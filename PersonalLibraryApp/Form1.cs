@@ -19,6 +19,16 @@ namespace PersonalLibraryApp
             booksPanel.Visible = false;
             searchPanel.Visible = false;
             accountPanel.Visible = false;
+
+            BookCard Book = new BookCard();
+            Book.TitleText = "Neuroplasticitatea, Secretul longevitatii Creierului";
+            Book.AuthorText = "Leon Danaila";
+            Book.BookmarkPage = "200";
+            Book.BookmarkPercent = "50";
+            Book.ReadingBar = 50;
+
+            HomeflowLayoutPanel.Controls.Add(Book);
+
         }
 
         private void bookButton_Click(object sender, EventArgs e)

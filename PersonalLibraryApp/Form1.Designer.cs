@@ -38,7 +38,7 @@
             pictureBox1 = new PictureBox();
             sectionLabel = new Label();
             homePanel = new Panel();
-            label1 = new Label();
+            HomeflowLayoutPanel = new FlowLayoutPanel();
             booksPanel = new Panel();
             label2 = new Label();
             accountPanel = new Panel();
@@ -153,21 +153,23 @@
             // 
             // homePanel
             // 
-            homePanel.Controls.Add(label1);
+            homePanel.Controls.Add(HomeflowLayoutPanel);
             homePanel.Dock = DockStyle.Fill;
             homePanel.Location = new Point(0, 56);
             homePanel.Name = "homePanel";
             homePanel.Size = new Size(384, 549);
             homePanel.TabIndex = 2;
             // 
-            // label1
+            // HomeflowLayoutPanel
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 3);
-            label1.Name = "label1";
-            label1.Size = new Size(40, 15);
-            label1.TabIndex = 0;
-            label1.Text = "Home";
+            HomeflowLayoutPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            HomeflowLayoutPanel.AutoScroll = true;
+            HomeflowLayoutPanel.FlowDirection = FlowDirection.TopDown;
+            HomeflowLayoutPanel.Location = new Point(12, 0);
+            HomeflowLayoutPanel.Name = "HomeflowLayoutPanel";
+            HomeflowLayoutPanel.Size = new Size(360, 549);
+            HomeflowLayoutPanel.TabIndex = 1;
+            HomeflowLayoutPanel.WrapContents = false;
             // 
             // booksPanel
             // 
@@ -245,7 +247,6 @@
             headerPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             homePanel.ResumeLayout(false);
-            homePanel.PerformLayout();
             booksPanel.ResumeLayout(false);
             booksPanel.PerformLayout();
             accountPanel.ResumeLayout(false);
@@ -266,12 +267,12 @@
         private Label sectionLabel;
         private PictureBox pictureBox1;
         private Panel homePanel;
-        private Label label1;
         private Panel booksPanel;
         private Label label2;
         private Panel accountPanel;
         private Panel searchPanel;
         private Label label4;
         private Label label3;
+        private FlowLayoutPanel HomeflowLayoutPanel;
     }
 }
