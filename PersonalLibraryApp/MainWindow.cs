@@ -1,11 +1,39 @@
+using PersonalLibraryApp.Backend;
+
 namespace PersonalLibraryApp
 {
-    public partial class Form1 : Form
+    public partial class MainWindow : Form
     {
-        public Form1()
+        public MainWindow()
         {
             InitializeComponent();
         }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            homeButton_Click(homeButton, e);
+
+            PopulateBooksUI();
+        }
+
+        private void PopulateBooksUI()
+        {
+            homeFlowLayoutPanel.Controls.Clear();
+
+            foreach (Book item in Library.BooksList)
+            {
+                if (item.Status.ToLower() == "reading" || item.Status.ToLower() == "unread")
+                {
+                    BookCard Book = new BookCard(item);
+
+                    homeFlowLayoutPanel.Controls.Add(Book);
+                }
+
+            }
+
+        }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -19,15 +47,6 @@ namespace PersonalLibraryApp
             booksPanel.Visible = false;
             searchPanel.Visible = false;
             accountPanel.Visible = false;
-
-            BookCard Book = new BookCard();
-            Book.TitleText = "Neuroplasticitatea, Secretul longevitatii Creierului";
-            Book.AuthorText = "Leon Danaila";
-            Book.BookmarkPage = "200";
-            Book.BookmarkPercent = "50";
-            Book.ReadingBar = 50;
-
-            HomeflowLayoutPanel.Controls.Add(Book);
 
         }
 

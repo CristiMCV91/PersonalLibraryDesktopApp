@@ -1,6 +1,6 @@
 ﻿namespace PersonalLibraryApp
 {
-    partial class Form1
+    partial class MainWindow
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             footerPanel = new Panel();
             homeButton = new Button();
             searchButton = new Button();
@@ -38,13 +39,17 @@
             pictureBox1 = new PictureBox();
             sectionLabel = new Label();
             homePanel = new Panel();
-            HomeflowLayoutPanel = new FlowLayoutPanel();
+            homeFlowLayoutPanel = new FlowLayoutPanel();
             booksPanel = new Panel();
-            label2 = new Label();
+            button1 = new Button();
+            label1 = new Label();
+            comboBox1 = new ComboBox();
+            flowLayoutPanel1 = new FlowLayoutPanel();
             accountPanel = new Panel();
             label3 = new Label();
             searchPanel = new Panel();
             label4 = new Label();
+            notifyIcon1 = new NotifyIcon(components);
             footerPanel.SuspendLayout();
             headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -153,41 +158,79 @@
             // 
             // homePanel
             // 
-            homePanel.Controls.Add(HomeflowLayoutPanel);
+            homePanel.Controls.Add(homeFlowLayoutPanel);
             homePanel.Dock = DockStyle.Fill;
             homePanel.Location = new Point(0, 56);
             homePanel.Name = "homePanel";
             homePanel.Size = new Size(384, 549);
             homePanel.TabIndex = 2;
             // 
-            // HomeflowLayoutPanel
+            // homeFlowLayoutPanel
             // 
-            HomeflowLayoutPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            HomeflowLayoutPanel.AutoScroll = true;
-            HomeflowLayoutPanel.FlowDirection = FlowDirection.TopDown;
-            HomeflowLayoutPanel.Location = new Point(12, 0);
-            HomeflowLayoutPanel.Name = "HomeflowLayoutPanel";
-            HomeflowLayoutPanel.Size = new Size(360, 549);
-            HomeflowLayoutPanel.TabIndex = 1;
-            HomeflowLayoutPanel.WrapContents = false;
+            homeFlowLayoutPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            homeFlowLayoutPanel.AutoScroll = true;
+            homeFlowLayoutPanel.FlowDirection = FlowDirection.TopDown;
+            homeFlowLayoutPanel.Location = new Point(12, 0);
+            homeFlowLayoutPanel.Name = "homeFlowLayoutPanel";
+            homeFlowLayoutPanel.Size = new Size(360, 549);
+            homeFlowLayoutPanel.TabIndex = 1;
+            homeFlowLayoutPanel.WrapContents = false;
             // 
             // booksPanel
             // 
-            booksPanel.Controls.Add(label2);
+            booksPanel.Controls.Add(button1);
+            booksPanel.Controls.Add(label1);
+            booksPanel.Controls.Add(comboBox1);
+            booksPanel.Controls.Add(flowLayoutPanel1);
             booksPanel.Dock = DockStyle.Fill;
             booksPanel.Location = new Point(0, 56);
             booksPanel.Name = "booksPanel";
             booksPanel.Size = new Size(384, 549);
             booksPanel.TabIndex = 3;
             // 
-            // label2
+            // button1
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(168, 131);
-            label2.Name = "label2";
-            label2.Size = new Size(39, 15);
-            label2.TabIndex = 0;
-            label2.Text = "Books";
+            button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button1.BackColor = Color.Transparent;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
+            button1.ForeColor = Color.FromArgb(221, 219, 255);
+            button1.Location = new Point(298, 3);
+            button1.Margin = new Padding(0);
+            button1.Name = "button1";
+            button1.Size = new Size(74, 61);
+            button1.TabIndex = 4;
+            button1.Text = "+";
+            button1.UseVisualStyleBackColor = false;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label1.Location = new Point(12, 23);
+            label1.Name = "label1";
+            label1.Size = new Size(47, 15);
+            label1.TabIndex = 3;
+            label1.Text = "Sort by";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FlatStyle = FlatStyle.Flat;
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Author", "Status" });
+            comboBox1.Location = new Point(62, 20);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(78, 23);
+            comboBox1.TabIndex = 2;
+            comboBox1.Text = "Sort by";
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Location = new Point(12, 67);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(360, 482);
+            flowLayoutPanel1.TabIndex = 1;
             // 
             // accountPanel
             // 
@@ -225,23 +268,27 @@
             label4.TabIndex = 0;
             label4.Text = "Search";
             // 
-            // Form1
+            // notifyIcon1
+            // 
+            notifyIcon1.Text = "notifyIcon1";
+            notifyIcon1.Visible = true;
+            // 
+            // MainWindow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(384, 661);
-            Controls.Add(homePanel);
             Controls.Add(booksPanel);
+            Controls.Add(homePanel);
             Controls.Add(accountPanel);
             Controls.Add(searchPanel);
             Controls.Add(headerPanel);
             Controls.Add(footerPanel);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            Name = "Form1";
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Name = "MainWindow";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Personal Library";
-            Load += Form1_Load;
             footerPanel.ResumeLayout(false);
             headerPanel.ResumeLayout(false);
             headerPanel.PerformLayout();
@@ -268,11 +315,15 @@
         private PictureBox pictureBox1;
         private Panel homePanel;
         private Panel booksPanel;
-        private Label label2;
         private Panel accountPanel;
         private Panel searchPanel;
         private Label label4;
         private Label label3;
-        private FlowLayoutPanel HomeflowLayoutPanel;
+        private FlowLayoutPanel homeFlowLayoutPanel;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private ComboBox comboBox1;
+        private Label label1;
+        private Button button1;
+        private NotifyIcon notifyIcon1;
     }
 }
