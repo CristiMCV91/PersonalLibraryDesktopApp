@@ -22,7 +22,7 @@ namespace PersonalLibraryApp
 
         private static void PopulateDummiData()
         {
-            Library.AddNewBook("Despre Dumnezeu si om", "Lev Tolstoi", "Filozofie si Spiritualitate", 272, "9789735076603");
+            Library.AddNewBook("Despre Dumnezeu si om", "Lev Tolstoi", "Filozofie si Spiritualitate", 272, "9789735076603", "Unread");
             Library.AddNewBook("Neuroplasticitatea, Secretul longevitatii creierului", "Leon Danaila", "Sanatate", 280, "9786303051710", "Reading", 229);
             Library.AddNewBook("Fii obsedat sau fii mediocru", "Grant Cardone", "Dezvoltare Personala", 290, "9789975334921", "Read");
             Library.AddNewBook("Deep Work", "Cal Newport", "Dezvoltare Personala", 300, "978067223255", "Read");

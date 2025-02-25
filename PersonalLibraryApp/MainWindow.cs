@@ -25,20 +25,26 @@ namespace PersonalLibraryApp
             {
                 if (item.Status.ToLower() == "reading" || item.Status.ToLower() == "unread")
                 {
-                    BookCard Book = new BookCard(item);
+                    BookCard bookCard = new BookCard(item);
 
-                    homeFlowLayoutPanel.Controls.Add(Book);
+                    homeFlowLayoutPanel.Controls.Add(bookCard);
                 }
+
+                BookRegistration bookRegistration = new BookRegistration(item);
+
+                booksFlowLayoutPanel.Controls.Add(bookRegistration);
+
+
 
             }
 
         }
 
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            homeButton_Click(homeButton, e);
-        }
+        //private void Form1_Load(object sender, EventArgs e)
+        //{
+        //    homeButton_Click(homeButton, e);
+        //}
 
         private void homeButton_Click(object sender, EventArgs e)
         {

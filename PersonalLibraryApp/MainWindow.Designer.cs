@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             footerPanel = new Panel();
             homeButton = new Button();
@@ -44,12 +43,11 @@
             button1 = new Button();
             label1 = new Label();
             comboBox1 = new ComboBox();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            booksFlowLayoutPanel = new FlowLayoutPanel();
             accountPanel = new Panel();
             label3 = new Label();
             searchPanel = new Panel();
             label4 = new Label();
-            notifyIcon1 = new NotifyIcon(components);
             footerPanel.SuspendLayout();
             headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -181,7 +179,7 @@
             booksPanel.Controls.Add(button1);
             booksPanel.Controls.Add(label1);
             booksPanel.Controls.Add(comboBox1);
-            booksPanel.Controls.Add(flowLayoutPanel1);
+            booksPanel.Controls.Add(booksFlowLayoutPanel);
             booksPanel.Dock = DockStyle.Fill;
             booksPanel.Location = new Point(0, 56);
             booksPanel.Name = "booksPanel";
@@ -225,12 +223,14 @@
             comboBox1.TabIndex = 2;
             comboBox1.Text = "Sort by";
             // 
-            // flowLayoutPanel1
+            // booksFlowLayoutPanel
             // 
-            flowLayoutPanel1.Location = new Point(12, 67);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(360, 482);
-            flowLayoutPanel1.TabIndex = 1;
+            booksFlowLayoutPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            booksFlowLayoutPanel.AutoScroll = true;
+            booksFlowLayoutPanel.Location = new Point(12, 67);
+            booksFlowLayoutPanel.Name = "booksFlowLayoutPanel";
+            booksFlowLayoutPanel.Size = new Size(360, 482);
+            booksFlowLayoutPanel.TabIndex = 1;
             // 
             // accountPanel
             // 
@@ -267,11 +267,6 @@
             label4.Size = new Size(42, 15);
             label4.TabIndex = 0;
             label4.Text = "Search";
-            // 
-            // notifyIcon1
-            // 
-            notifyIcon1.Text = "notifyIcon1";
-            notifyIcon1.Visible = true;
             // 
             // MainWindow
             // 
@@ -320,10 +315,10 @@
         private Label label4;
         private Label label3;
         private FlowLayoutPanel homeFlowLayoutPanel;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private FlowLayoutPanel booksFlowLayoutPanel;
         private ComboBox comboBox1;
         private Label label1;
         private Button button1;
-        private NotifyIcon notifyIcon1;
+
     }
 }
