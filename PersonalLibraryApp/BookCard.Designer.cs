@@ -78,6 +78,7 @@
             // 
             // ReadingProgressBar
             // 
+            ReadingProgressBar.ForeColor = Color.DodgerBlue;
             ReadingProgressBar.Location = new Point(19, 111);
             ReadingProgressBar.Name = "ReadingProgressBar";
             ReadingProgressBar.Size = new Size(200, 4);
@@ -96,6 +97,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             Controls.Add(BookmarkLabel);
             Controls.Add(ReadingProgressBar);
             Controls.Add(AuthorLabel);

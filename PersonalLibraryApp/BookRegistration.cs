@@ -19,6 +19,11 @@ namespace PersonalLibraryApp
         public string AuthorText { get => AuthorLabel.Text; set => AuthorLabel.Text = value.ToUpper(); }
         public string StatusText { get => StatusLabel.Text; set => StatusLabel.Text = value; }
 
+        public BookRegistration()
+        {
+            InitializeComponent();
+        }
+
         public BookRegistration(Book book)
         {
             InitializeComponent();
@@ -37,7 +42,7 @@ namespace PersonalLibraryApp
 
             TitleText = Book.Title;
             AuthorText = Book.Author.ToUpper();
-            StatusText = Book.Status.Substring(0,1).ToUpper() + Book.Status.Substring(1).ToLower();
+            StatusText = Book.Status.Substring(0, 1).ToUpper() + Book.Status.Substring(1).ToLower();
 
         }
     }

@@ -37,6 +37,10 @@ namespace PersonalLibraryApp
             }
         }
 
+        public BookCard()
+        {
+            InitializeComponent();
+        }
 
         public BookCard(Book book)
         {

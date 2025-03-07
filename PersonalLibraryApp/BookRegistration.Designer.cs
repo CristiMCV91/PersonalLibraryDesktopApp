@@ -41,15 +41,15 @@
             TitleLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             TitleLabel.Location = new Point(9, 7);
             TitleLabel.Name = "TitleLabel";
-            TitleLabel.Size = new Size(226, 34);
+            TitleLabel.Size = new Size(328, 15);
             TitleLabel.TabIndex = 0;
             TitleLabel.Text = "Neuroplasticitatea, Secretul longevitatii creierului";
             // 
             // AuthorLabel
             // 
-            AuthorLabel.Location = new Point(9, 41);
+            AuthorLabel.Location = new Point(9, 32);
             AuthorLabel.Name = "AuthorLabel";
-            AuthorLabel.Size = new Size(265, 15);
+            AuthorLabel.Size = new Size(253, 15);
             AuthorLabel.TabIndex = 1;
             AuthorLabel.Text = "LEON DANAILA";
             // 
@@ -57,7 +57,7 @@
             // 
             StatusLabel.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             StatusLabel.ForeColor = SystemColors.ControlText;
-            StatusLabel.Location = new Point(237, 22);
+            StatusLabel.Location = new Point(252, 32);
             StatusLabel.Name = "StatusLabel";
             StatusLabel.Size = new Size(56, 15);
             StatusLabel.TabIndex = 2;
@@ -69,7 +69,7 @@
             DetailsButton.FlatAppearance.BorderSize = 0;
             DetailsButton.FlatStyle = FlatStyle.Flat;
             DetailsButton.Image = (Image)resources.GetObject("DetailsButton.Image");
-            DetailsButton.Location = new Point(292, 18);
+            DetailsButton.Location = new Point(313, 28);
             DetailsButton.Name = "DetailsButton";
             DetailsButton.Size = new Size(23, 23);
             DetailsButton.TabIndex = 3;
@@ -77,11 +77,11 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(64, 64, 64);
-            panel1.Location = new Point(0, 69);
+            panel1.BackColor = Color.FromArgb(209, 208, 212);
+            panel1.Location = new Point(0, 59);
             panel1.Margin = new Padding(0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(330, 1);
+            panel1.Size = new Size(345, 1);
             panel1.TabIndex = 4;
             // 
             // BookRegistration
@@ -95,7 +95,7 @@
             Controls.Add(TitleLabel);
             Margin = new Padding(0);
             Name = "BookRegistration";
-            Size = new Size(330, 70);
+            Size = new Size(345, 60);
             ResumeLayout(false);
         }
 

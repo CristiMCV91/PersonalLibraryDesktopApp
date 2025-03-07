@@ -53,6 +53,7 @@ namespace PersonalLibraryApp
             booksPanel.Visible = false;
             searchPanel.Visible = false;
             accountPanel.Visible = false;
+            AddNewBookPanel.Visible = false;
 
         }
 
@@ -63,6 +64,7 @@ namespace PersonalLibraryApp
             booksPanel.Visible = true;
             searchPanel.Visible = false;
             accountPanel.Visible = false;
+            AddNewBookPanel.Visible = false;
         }
 
         private void searchButton_Click(object sender, EventArgs e)
@@ -72,6 +74,7 @@ namespace PersonalLibraryApp
             booksPanel.Visible = false;
             searchPanel.Visible = true;
             accountPanel.Visible = false;
+            AddNewBookPanel.Visible = false;
         }
 
         private void userbutton_Click(object sender, EventArgs e)
@@ -81,6 +84,32 @@ namespace PersonalLibraryApp
             booksPanel.Visible = false;
             searchPanel.Visible = false;
             accountPanel.Visible = true;
+            AddNewBookPanel.Visible = false;
+        }
+
+        private void NewBookButton_Click(object sender, EventArgs e)
+        {
+            sectionLabel.Text = "Add New Book";
+            homePanel.Visible = false;
+            booksPanel.Visible = false;
+            searchPanel.Visible = false;
+            accountPanel.Visible = false;
+            footerPanel.Visible = false;
+            AddNewBookPanel.Visible = true;
+            BackPictureButton.Visible = true;
+        }
+
+
+        private void BackPictureButton_Click(object sender, EventArgs e)
+        {
+            sectionLabel.Text = "Books";
+            homePanel.Visible = false;
+            booksPanel.Visible = true;
+            searchPanel.Visible = false;
+            accountPanel.Visible = false;
+            footerPanel.Visible = true;
+            AddNewBookPanel.Visible = false;
+            BackPictureButton.Visible = false;  
         }
     }
 }
