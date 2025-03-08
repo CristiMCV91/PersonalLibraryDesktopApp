@@ -46,23 +46,23 @@
             comboBox1 = new ComboBox();
             booksFlowLayoutPanel = new FlowLayoutPanel();
             AddNewBookPanel = new Panel();
-            label2 = new Label();
-            BookmarkTextBox = new TextBox();
-            BookmarkLabel = new Label();
-            StatusLabel = new GroupBox();
-            ReadRadioButton = new RadioButton();
-            ReadingRadioButton = new RadioButton();
-            UnreadRadioButton = new RadioButton();
-            IsbnTextBox = new TextBox();
-            IsbnLabel = new Label();
-            PagesTextBox = new TextBox();
-            PagesLabel = new Label();
-            GenreTextBox = new TextBox();
-            GenreLabel = new Label();
-            TitleTextBox = new TextBox();
+            WarningLabel = new Label();
             TitleLabel = new Label();
-            AuthorTextBox = new TextBox();
+            TitleTextBox = new TextBox();
             AuthorLabel = new Label();
+            AuthorTextBox = new TextBox();
+            GenreLabel = new Label();
+            GenreTextBox = new TextBox();
+            PagesLabel = new Label();
+            PagesTextBox = new TextBox();
+            IsbnLabel = new Label();
+            IsbnTextBox = new TextBox();
+            StatusLabel = new GroupBox();
+            UnreadRadioButton = new RadioButton();
+            ReadingRadioButton = new RadioButton();
+            ReadRadioButton = new RadioButton();
+            BookmarkLabel = new Label();
+            BookmarkTextBox = new TextBox();
             accountPanel = new Panel();
             label3 = new Label();
             searchPanel = new Panel();
@@ -89,9 +89,10 @@
             SaveButton.Location = new Point(32, 521);
             SaveButton.Name = "SaveButton";
             SaveButton.Size = new Size(320, 52);
-            SaveButton.TabIndex = 18;
+            SaveButton.TabIndex = 11;
             SaveButton.Text = "Save";
             SaveButton.UseVisualStyleBackColor = false;
+            SaveButton.Click += SaveButton_Click;
             // 
             // footerPanel
             // 
@@ -274,21 +275,21 @@
             // AddNewBookPanel
             // 
             AddNewBookPanel.BackColor = Color.White;
-            AddNewBookPanel.Controls.Add(label2);
-            AddNewBookPanel.Controls.Add(SaveButton);
-            AddNewBookPanel.Controls.Add(BookmarkTextBox);
-            AddNewBookPanel.Controls.Add(BookmarkLabel);
-            AddNewBookPanel.Controls.Add(StatusLabel);
-            AddNewBookPanel.Controls.Add(IsbnTextBox);
-            AddNewBookPanel.Controls.Add(IsbnLabel);
-            AddNewBookPanel.Controls.Add(PagesTextBox);
-            AddNewBookPanel.Controls.Add(PagesLabel);
-            AddNewBookPanel.Controls.Add(GenreTextBox);
-            AddNewBookPanel.Controls.Add(GenreLabel);
-            AddNewBookPanel.Controls.Add(TitleTextBox);
+            AddNewBookPanel.Controls.Add(WarningLabel);
             AddNewBookPanel.Controls.Add(TitleLabel);
-            AddNewBookPanel.Controls.Add(AuthorTextBox);
+            AddNewBookPanel.Controls.Add(TitleTextBox);
             AddNewBookPanel.Controls.Add(AuthorLabel);
+            AddNewBookPanel.Controls.Add(AuthorTextBox);
+            AddNewBookPanel.Controls.Add(GenreLabel);
+            AddNewBookPanel.Controls.Add(GenreTextBox);
+            AddNewBookPanel.Controls.Add(PagesLabel);
+            AddNewBookPanel.Controls.Add(PagesTextBox);
+            AddNewBookPanel.Controls.Add(IsbnLabel);
+            AddNewBookPanel.Controls.Add(IsbnTextBox);
+            AddNewBookPanel.Controls.Add(StatusLabel);
+            AddNewBookPanel.Controls.Add(BookmarkLabel);
+            AddNewBookPanel.Controls.Add(BookmarkTextBox);
+            AddNewBookPanel.Controls.Add(SaveButton);
             AddNewBookPanel.ForeColor = Color.FromArgb(68, 64, 80);
             AddNewBookPanel.Location = new Point(0, 56);
             AddNewBookPanel.Margin = new Padding(0);
@@ -297,154 +298,26 @@
             AddNewBookPanel.TabIndex = 7;
             AddNewBookPanel.Tag = "";
             // 
-            // label2
+            // WarningLabel
             // 
-            label2.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.Red;
-            label2.Location = new Point(32, 20);
-            label2.Name = "label2";
-            label2.Size = new Size(321, 18);
-            label2.TabIndex = 19;
-            label2.Text = "Warning messages";
-            label2.TextAlign = ContentAlignment.MiddleRight;
+            WarningLabel.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            WarningLabel.ForeColor = Color.Red;
+            WarningLabel.Location = new Point(32, 20);
+            WarningLabel.Name = "WarningLabel";
+            WarningLabel.Size = new Size(321, 18);
+            WarningLabel.TabIndex = 19;
+            WarningLabel.Text = "Warning messages";
+            WarningLabel.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // BookmarkTextBox
+            // TitleLabel
             // 
-            BookmarkTextBox.BackColor = Color.FromArgb(241, 241, 242);
-            BookmarkTextBox.BorderStyle = BorderStyle.None;
-            BookmarkTextBox.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BookmarkTextBox.ForeColor = Color.FromArgb(68, 64, 80);
-            BookmarkTextBox.HideSelection = false;
-            BookmarkTextBox.Location = new Point(33, 477);
-            BookmarkTextBox.Margin = new Padding(0);
-            BookmarkTextBox.Name = "BookmarkTextBox";
-            BookmarkTextBox.Size = new Size(320, 20);
-            BookmarkTextBox.TabIndex = 17;
-            // 
-            // BookmarkLabel
-            // 
-            BookmarkLabel.AutoSize = true;
-            BookmarkLabel.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BookmarkLabel.Location = new Point(32, 454);
-            BookmarkLabel.Name = "BookmarkLabel";
-            BookmarkLabel.Size = new Size(70, 18);
-            BookmarkLabel.TabIndex = 16;
-            BookmarkLabel.Text = "Bookmark";
-            // 
-            // StatusLabel
-            // 
-            StatusLabel.Controls.Add(ReadRadioButton);
-            StatusLabel.Controls.Add(ReadingRadioButton);
-            StatusLabel.Controls.Add(UnreadRadioButton);
-            StatusLabel.Font = new Font("Calibri", 11.25F, FontStyle.Bold);
-            StatusLabel.Location = new Point(32, 327);
-            StatusLabel.Name = "StatusLabel";
-            StatusLabel.Size = new Size(321, 112);
-            StatusLabel.TabIndex = 14;
-            StatusLabel.TabStop = false;
-            StatusLabel.Text = "Status";
-            // 
-            // ReadRadioButton
-            // 
-            ReadRadioButton.AutoSize = true;
-            ReadRadioButton.Location = new Point(8, 81);
-            ReadRadioButton.Name = "ReadRadioButton";
-            ReadRadioButton.Size = new Size(57, 22);
-            ReadRadioButton.TabIndex = 2;
-            ReadRadioButton.TabStop = true;
-            ReadRadioButton.Text = "Read";
-            ReadRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // ReadingRadioButton
-            // 
-            ReadingRadioButton.AutoSize = true;
-            ReadingRadioButton.Location = new Point(8, 53);
-            ReadingRadioButton.Name = "ReadingRadioButton";
-            ReadingRadioButton.Size = new Size(76, 22);
-            ReadingRadioButton.TabIndex = 1;
-            ReadingRadioButton.TabStop = true;
-            ReadingRadioButton.Text = "Reading";
-            ReadingRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // UnreadRadioButton
-            // 
-            UnreadRadioButton.AutoSize = true;
-            UnreadRadioButton.Location = new Point(8, 25);
-            UnreadRadioButton.Name = "UnreadRadioButton";
-            UnreadRadioButton.Size = new Size(72, 22);
-            UnreadRadioButton.TabIndex = 0;
-            UnreadRadioButton.TabStop = true;
-            UnreadRadioButton.Text = "Unread";
-            UnreadRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // IsbnTextBox
-            // 
-            IsbnTextBox.BackColor = Color.FromArgb(241, 241, 242);
-            IsbnTextBox.BorderStyle = BorderStyle.None;
-            IsbnTextBox.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            IsbnTextBox.ForeColor = Color.FromArgb(68, 64, 80);
-            IsbnTextBox.HideSelection = false;
-            IsbnTextBox.Location = new Point(33, 292);
-            IsbnTextBox.Margin = new Padding(0);
-            IsbnTextBox.Name = "IsbnTextBox";
-            IsbnTextBox.Size = new Size(320, 20);
-            IsbnTextBox.TabIndex = 11;
-            // 
-            // IsbnLabel
-            // 
-            IsbnLabel.AutoSize = true;
-            IsbnLabel.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            IsbnLabel.Location = new Point(32, 269);
-            IsbnLabel.Name = "IsbnLabel";
-            IsbnLabel.Size = new Size(37, 18);
-            IsbnLabel.TabIndex = 10;
-            IsbnLabel.Text = "ISBN";
-            // 
-            // PagesTextBox
-            // 
-            PagesTextBox.BackColor = Color.FromArgb(241, 241, 242);
-            PagesTextBox.BorderStyle = BorderStyle.None;
-            PagesTextBox.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            PagesTextBox.ForeColor = Color.FromArgb(68, 64, 80);
-            PagesTextBox.HideSelection = false;
-            PagesTextBox.Location = new Point(33, 233);
-            PagesTextBox.Margin = new Padding(0);
-            PagesTextBox.Name = "PagesTextBox";
-            PagesTextBox.Size = new Size(320, 20);
-            PagesTextBox.TabIndex = 9;
-            // 
-            // PagesLabel
-            // 
-            PagesLabel.AutoSize = true;
-            PagesLabel.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            PagesLabel.Location = new Point(32, 211);
-            PagesLabel.Name = "PagesLabel";
-            PagesLabel.Size = new Size(44, 18);
-            PagesLabel.TabIndex = 8;
-            PagesLabel.Text = "Pages";
-            // 
-            // GenreTextBox
-            // 
-            GenreTextBox.BackColor = Color.FromArgb(241, 241, 242);
-            GenreTextBox.BorderStyle = BorderStyle.None;
-            GenreTextBox.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            GenreTextBox.ForeColor = Color.FromArgb(68, 64, 80);
-            GenreTextBox.HideSelection = false;
-            GenreTextBox.Location = new Point(33, 175);
-            GenreTextBox.Margin = new Padding(0);
-            GenreTextBox.Name = "GenreTextBox";
-            GenreTextBox.Size = new Size(320, 20);
-            GenreTextBox.TabIndex = 7;
-            // 
-            // GenreLabel
-            // 
-            GenreLabel.AutoSize = true;
-            GenreLabel.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            GenreLabel.Location = new Point(32, 151);
-            GenreLabel.Name = "GenreLabel";
-            GenreLabel.Size = new Size(47, 18);
-            GenreLabel.TabIndex = 6;
-            GenreLabel.Text = "Genre";
+            TitleLabel.AutoSize = true;
+            TitleLabel.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            TitleLabel.Location = new Point(32, 35);
+            TitleLabel.Name = "TitleLabel";
+            TitleLabel.Size = new Size(46, 18);
+            TitleLabel.TabIndex = 4;
+            TitleLabel.Text = "Title *";
             // 
             // TitleTextBox
             // 
@@ -457,17 +330,17 @@
             TitleTextBox.Margin = new Padding(0);
             TitleTextBox.Name = "TitleTextBox";
             TitleTextBox.Size = new Size(320, 20);
-            TitleTextBox.TabIndex = 5;
+            TitleTextBox.TabIndex = 1;
             // 
-            // TitleLabel
+            // AuthorLabel
             // 
-            TitleLabel.AutoSize = true;
-            TitleLabel.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            TitleLabel.Location = new Point(32, 35);
-            TitleLabel.Name = "TitleLabel";
-            TitleLabel.Size = new Size(36, 18);
-            TitleLabel.TabIndex = 4;
-            TitleLabel.Text = "Title";
+            AuthorLabel.AutoSize = true;
+            AuthorLabel.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            AuthorLabel.Location = new Point(32, 93);
+            AuthorLabel.Name = "AuthorLabel";
+            AuthorLabel.Size = new Size(61, 18);
+            AuthorLabel.TabIndex = 2;
+            AuthorLabel.Text = "Author *";
             // 
             // AuthorTextBox
             // 
@@ -480,17 +353,149 @@
             AuthorTextBox.Margin = new Padding(0);
             AuthorTextBox.Name = "AuthorTextBox";
             AuthorTextBox.Size = new Size(320, 20);
-            AuthorTextBox.TabIndex = 3;
+            AuthorTextBox.TabIndex = 2;
             // 
-            // AuthorLabel
+            // GenreLabel
             // 
-            AuthorLabel.AutoSize = true;
-            AuthorLabel.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            AuthorLabel.Location = new Point(32, 93);
-            AuthorLabel.Name = "AuthorLabel";
-            AuthorLabel.Size = new Size(51, 18);
-            AuthorLabel.TabIndex = 2;
-            AuthorLabel.Text = "Author";
+            GenreLabel.AutoSize = true;
+            GenreLabel.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            GenreLabel.Location = new Point(32, 151);
+            GenreLabel.Name = "GenreLabel";
+            GenreLabel.Size = new Size(47, 18);
+            GenreLabel.TabIndex = 6;
+            GenreLabel.Text = "Genre";
+            // 
+            // GenreTextBox
+            // 
+            GenreTextBox.BackColor = Color.FromArgb(241, 241, 242);
+            GenreTextBox.BorderStyle = BorderStyle.None;
+            GenreTextBox.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            GenreTextBox.ForeColor = Color.FromArgb(68, 64, 80);
+            GenreTextBox.HideSelection = false;
+            GenreTextBox.Location = new Point(33, 175);
+            GenreTextBox.Margin = new Padding(0);
+            GenreTextBox.Name = "GenreTextBox";
+            GenreTextBox.Size = new Size(320, 20);
+            GenreTextBox.TabIndex = 3;
+            // 
+            // PagesLabel
+            // 
+            PagesLabel.AutoSize = true;
+            PagesLabel.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            PagesLabel.Location = new Point(32, 211);
+            PagesLabel.Name = "PagesLabel";
+            PagesLabel.Size = new Size(54, 18);
+            PagesLabel.TabIndex = 8;
+            PagesLabel.Text = "Pages *";
+            // 
+            // PagesTextBox
+            // 
+            PagesTextBox.BackColor = Color.FromArgb(241, 241, 242);
+            PagesTextBox.BorderStyle = BorderStyle.None;
+            PagesTextBox.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            PagesTextBox.ForeColor = Color.FromArgb(68, 64, 80);
+            PagesTextBox.HideSelection = false;
+            PagesTextBox.Location = new Point(33, 233);
+            PagesTextBox.Margin = new Padding(0);
+            PagesTextBox.Name = "PagesTextBox";
+            PagesTextBox.Size = new Size(320, 20);
+            PagesTextBox.TabIndex = 4;
+            // 
+            // IsbnLabel
+            // 
+            IsbnLabel.AutoSize = true;
+            IsbnLabel.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            IsbnLabel.Location = new Point(32, 269);
+            IsbnLabel.Name = "IsbnLabel";
+            IsbnLabel.Size = new Size(37, 18);
+            IsbnLabel.TabIndex = 10;
+            IsbnLabel.Text = "ISBN";
+            // 
+            // IsbnTextBox
+            // 
+            IsbnTextBox.BackColor = Color.FromArgb(241, 241, 242);
+            IsbnTextBox.BorderStyle = BorderStyle.None;
+            IsbnTextBox.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            IsbnTextBox.ForeColor = Color.FromArgb(68, 64, 80);
+            IsbnTextBox.HideSelection = false;
+            IsbnTextBox.Location = new Point(33, 292);
+            IsbnTextBox.Margin = new Padding(0);
+            IsbnTextBox.Name = "IsbnTextBox";
+            IsbnTextBox.Size = new Size(320, 20);
+            IsbnTextBox.TabIndex = 5;
+            // 
+            // StatusLabel
+            // 
+            StatusLabel.Controls.Add(UnreadRadioButton);
+            StatusLabel.Controls.Add(ReadingRadioButton);
+            StatusLabel.Controls.Add(ReadRadioButton);
+            StatusLabel.Font = new Font("Calibri", 11.25F, FontStyle.Bold);
+            StatusLabel.Location = new Point(32, 327);
+            StatusLabel.Name = "StatusLabel";
+            StatusLabel.Size = new Size(321, 112);
+            StatusLabel.TabIndex = 6;
+            StatusLabel.TabStop = false;
+            StatusLabel.Text = "Status *";
+            // 
+            // UnreadRadioButton
+            // 
+            UnreadRadioButton.AutoSize = true;
+            UnreadRadioButton.Location = new Point(8, 25);
+            UnreadRadioButton.Name = "UnreadRadioButton";
+            UnreadRadioButton.Size = new Size(72, 22);
+            UnreadRadioButton.TabIndex = 7;
+            UnreadRadioButton.TabStop = true;
+            UnreadRadioButton.Text = "Unread";
+            UnreadRadioButton.UseVisualStyleBackColor = true;
+            UnreadRadioButton.CheckedChanged += Status_IsChanged;
+            // 
+            // ReadingRadioButton
+            // 
+            ReadingRadioButton.AutoSize = true;
+            ReadingRadioButton.Location = new Point(8, 53);
+            ReadingRadioButton.Name = "ReadingRadioButton";
+            ReadingRadioButton.Size = new Size(76, 22);
+            ReadingRadioButton.TabIndex = 8;
+            ReadingRadioButton.TabStop = true;
+            ReadingRadioButton.Text = "Reading";
+            ReadingRadioButton.UseVisualStyleBackColor = true;
+            ReadingRadioButton.CheckedChanged += Status_IsChanged;
+            // 
+            // ReadRadioButton
+            // 
+            ReadRadioButton.AutoSize = true;
+            ReadRadioButton.Location = new Point(8, 81);
+            ReadRadioButton.Name = "ReadRadioButton";
+            ReadRadioButton.Size = new Size(57, 22);
+            ReadRadioButton.TabIndex = 9;
+            ReadRadioButton.TabStop = true;
+            ReadRadioButton.Text = "Read";
+            ReadRadioButton.UseVisualStyleBackColor = true;
+            ReadRadioButton.CheckedChanged += Status_IsChanged;
+            // 
+            // BookmarkLabel
+            // 
+            BookmarkLabel.AutoSize = true;
+            BookmarkLabel.Font = new Font("Calibri", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BookmarkLabel.Location = new Point(32, 454);
+            BookmarkLabel.Name = "BookmarkLabel";
+            BookmarkLabel.Size = new Size(212, 18);
+            BookmarkLabel.TabIndex = 16;
+            BookmarkLabel.Text = "Bookmark (if Reading is checked)";
+            // 
+            // BookmarkTextBox
+            // 
+            BookmarkTextBox.BackColor = Color.FromArgb(241, 241, 242);
+            BookmarkTextBox.BorderStyle = BorderStyle.None;
+            BookmarkTextBox.Enabled = false;
+            BookmarkTextBox.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BookmarkTextBox.ForeColor = Color.FromArgb(68, 64, 80);
+            BookmarkTextBox.HideSelection = false;
+            BookmarkTextBox.Location = new Point(33, 477);
+            BookmarkTextBox.Margin = new Padding(0);
+            BookmarkTextBox.Name = "BookmarkTextBox";
+            BookmarkTextBox.Size = new Size(320, 20);
+            BookmarkTextBox.TabIndex = 10;
             // 
             // accountPanel
             // 
@@ -603,6 +608,6 @@
         private Button SaveButton;
         private TextBox BookmarkTextBox;
         private Label BookmarkLabel;
-        private Label label2;
+        private Label WarningLabel;
     }
 }
