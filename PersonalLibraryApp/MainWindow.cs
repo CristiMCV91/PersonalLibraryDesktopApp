@@ -4,10 +4,32 @@ namespace PersonalLibraryApp
 {
     public partial class MainWindow : Form
     {
+        private static MainWindow _instance;
+        private static readonly object _lock = new object();
+
         private string _status = string.Empty;
+        private BookDetails _bookDetails = null;
+        private BookEditor _bookEditor = null;
         public MainWindow()
         {
             InitializeComponent();
+        }
+        public static MainWindow Instance
+        {
+            get
+            {
+                if (_instance == null || _instance.IsDisposed)
+                {
+                    lock (_lock)
+                    {
+                        if (_instance == null || _instance.IsDisposed)
+                        {
+                            _instance = new MainWindow();
+                        }
+                    }
+                }
+                return _instance;
+            }
         }
 
         protected override void OnLoad(EventArgs e)
@@ -32,7 +54,7 @@ namespace PersonalLibraryApp
                     homeFlowLayoutPanel.Controls.Add(bookCard);
                 }
 
-                BookRegistration bookRegistration = new BookRegistration(item);
+                BookRegistration bookRegistration = new BookRegistration(this, item);
 
                 booksFlowLayoutPanel.Controls.Add(bookRegistration);
 
@@ -40,45 +62,52 @@ namespace PersonalLibraryApp
 
         }
 
-        private void homeButton_Click(object sender, EventArgs e)
+        internal void homeButton_Click(object sender, EventArgs e)
         {
             sectionLabel.Text = "Home";
             homePanel.Visible = true;
             booksPanel.Visible = false;
             searchPanel.Visible = false;
             accountPanel.Visible = false;
-            AddNewBookPanel.Visible = false;
+            BookEditorFlowLayoutPanel.Visible = false;
+            BookDetailsFlowLayoutPanel.Visible = false;
+            CloseBookDetails();
 
         }
 
-        private void bookButton_Click(object sender, EventArgs e)
+        internal void bookButton_Click(object sender, EventArgs e)
         {
             sectionLabel.Text = "Books";
             homePanel.Visible = false;
             booksPanel.Visible = true;
             searchPanel.Visible = false;
             accountPanel.Visible = false;
-            AddNewBookPanel.Visible = false;
+            BookEditorFlowLayoutPanel.Visible = false;
+            BookDetailsFlowLayoutPanel.Visible = false;
+            CloseBookDetails();
         }
 
-        private void searchButton_Click(object sender, EventArgs e)
+        internal void searchButton_Click(object sender, EventArgs e)
         {
             sectionLabel.Text = "Search";
             homePanel.Visible = false;
             booksPanel.Visible = false;
             searchPanel.Visible = true;
             accountPanel.Visible = false;
-            AddNewBookPanel.Visible = false;
+            BookEditorFlowLayoutPanel.Visible = false;
+            BookDetailsFlowLayoutPanel.Visible = false;
+            CloseBookDetails();
         }
 
-        private void userbutton_Click(object sender, EventArgs e)
+        internal void userbutton_Click(object sender, EventArgs e)
         {
             sectionLabel.Text = "Account";
             homePanel.Visible = false;
             booksPanel.Visible = false;
             searchPanel.Visible = false;
             accountPanel.Visible = true;
-            AddNewBookPanel.Visible = false;
+            BookEditorFlowLayoutPanel.Visible = false;
+            CloseBookDetails();
         }
 
         private void NewBookButton_Click(object sender, EventArgs e)
@@ -89,12 +118,18 @@ namespace PersonalLibraryApp
             searchPanel.Visible = false;
             accountPanel.Visible = false;
             footerPanel.Visible = false;
-            AddNewBookPanel.Visible = true;
+            BookDetailsFlowLayoutPanel.Visible = false;
+            BookEditorFlowLayoutPanel.Visible = true;
             BackPictureButton.Visible = true;
+            BookEditorFlowLayoutPanel.Controls.Clear();
+            _bookEditor = new BookEditor(this);
+            BookEditorFlowLayoutPanel.Controls.Add(_bookEditor);
+
+
         }
 
 
-        private void BackPictureButton_Click(object sender, EventArgs e)
+        internal void BackPictureButton_Click(object sender, EventArgs e)
         {
             sectionLabel.Text = "Books";
             homePanel.Visible = false;
@@ -102,119 +137,72 @@ namespace PersonalLibraryApp
             searchPanel.Visible = false;
             accountPanel.Visible = false;
             footerPanel.Visible = true;
-            AddNewBookPanel.Visible = false;
+            BookDetailsFlowLayoutPanel.Visible = false;
+            BookEditorFlowLayoutPanel.Visible = false;
             BackPictureButton.Visible = false;
-        }
-
-        private void AddNewBook()
-        {
-            string? Title = TitleTextBox.Text;
-            string? Author = AuthorTextBox.Text;
-            string? Genre = GenreTextBox.Text;
-            string? Pages = PagesTextBox.Text;
-            string? Isbn = IsbnTextBox.Text;
-            string? Status = _status;
-            string? Bookmark = BookmarkTextBox.Text;
-
-            if (_status == "Reading")
-            {
-                Library.AddNewBook(Title, Author, Genre, int.Parse(Pages), Isbn, Status);
-            }
-            else
-            {
-                Library.AddNewBook(Title, Author, Genre, int.Parse(Pages), Isbn, Status, int.Parse(Bookmark));
-            }
-
-        }
-
-        private void ClearBookFields()
-        {
-            TitleTextBox.Text = string.Empty;
-            AuthorTextBox.Text = string.Empty;
-            GenreTextBox.Text = string.Empty;
-            PagesTextBox.Text = string.Empty;
-            IsbnTextBox.Text = string.Empty;
-            _status = string.Empty;
-            UnreadRadioButton.Checked = false;
-            ReadingRadioButton.Checked = false;
-            ReadRadioButton.Checked = false;
-            BookmarkTextBox.Text = string.Empty;
-
-        }
-
-        private void SaveButton_Click(object sender, EventArgs e)
-        {
-            WarningLabel.Text = string.Empty;
-            if (string.IsNullOrEmpty(TitleTextBox.Text))
-            {
-                WarningLabel.Text = "Title can't be empty";
-                return;
-            }
-            if (string.IsNullOrEmpty(AuthorTextBox.Text))
-            {
-                WarningLabel.Text = "Author can't be empty";
-                return;
-            }
-            if (string.IsNullOrEmpty(GenreTextBox.Text))
-            {
-                GenreTextBox.Text = "";
-            }
-            if (string.IsNullOrEmpty(PagesTextBox.Text))
-            {
-                WarningLabel.Text = "Pages can't be empty";
-                return;
-            }
-            if (!int.TryParse(PagesTextBox.Text, out int a) || int.Parse(PagesTextBox.Text) < 1)
-            {
-                WarningLabel.Text = "Please insert correct pages";
-                return;
-            }
-            if (string.IsNullOrEmpty(IsbnTextBox.Text))
-            {
-                IsbnTextBox.Text = "";
-            }
-            if (string.IsNullOrEmpty(_status))
-            {
-                WarningLabel.Text = "Please select book status";
-                return;
-            }
-
-            if (ReadingRadioButton.Checked && (!int.TryParse(BookmarkTextBox.Text, out int b) || int.Parse(BookmarkTextBox.Text) < 0))
-            {
-                WarningLabel.Text = "Please insert correct bookmark";
-                return;
-            }
-
-            if (string.IsNullOrEmpty(BookmarkTextBox.Text))
-            {
-                BookmarkTextBox.Text = "0";
-            }
-
-
-            AddNewBook();
-            ClearBookFields();
             PopulateBooksUI();
-            BackPictureButton_Click(BackPictureButton, e);
-            bookButton_Click(bookButton, e);
+            CloseBookDetails();
+            CloseBookEditor();
+
         }
 
-        private void Status_IsChanged(object sender, EventArgs e)
-        {
-            if (sender is RadioButton == false) return;
-            RadioButton rb = (RadioButton)sender;
 
-            if (rb.Checked == true)
-            {
-                _status = rb.Text;
-            }
-            if (rb.Text == "Reading")
-            {
-                BookmarkTextBox.Enabled = true;
-            }
-            else
-            {
-                BookmarkTextBox.Enabled = false;
-            }
+        public Book OpenBookDetails(Book book)
+        {
+            CloseBookEditor();
+            sectionLabel.Text = book.Author;
+            BookDetailsFlowLayoutPanel.Controls.Clear();
+            BookDetailsFlowLayoutPanel.Visible = true;
+            homePanel.Visible = false;
+            booksPanel.Visible = false;
+            searchPanel.Visible = false;
+            accountPanel.Visible = false;
+            BackPictureButton.Visible = true;
+            _bookDetails = new BookDetails(this, book);
+            BookDetailsFlowLayoutPanel.Controls.Add(_bookDetails);
+
+            return book;
+        }
+        public void CloseBookDetails()
+        {
+            BookDetailsFlowLayoutPanel.Controls.Clear();
+            BookDetailsFlowLayoutPanel.Visible = false;
+            _bookDetails = null;
+
+        }
+
+        public void DeleteBook(Book book, EventArgs e)
+        { 
+            CloseBookDetails();
+            Library.DeleteBook(book);
+            BackPictureButton_Click(BackPictureButton, e);
+        }
+
+        public void MarkAs(Book book, string status, EventArgs e)
+        {
+            book.SetStatus(status);
+            CloseBookDetails();
+            OpenBookDetails(book);
+            PopulateBooksUI();
+        }
+
+        public void CloseBookEditor()
+        {
+            BookEditorFlowLayoutPanel.Controls.Clear();
+            BookEditorFlowLayoutPanel.Visible = false;
+            _bookEditor= null;
+
+        }
+
+        public void EditBook(Book book)
+        {
+            CloseBookDetails();
+            BookEditorFlowLayoutPanel.Visible = true;
+            BookEditorFlowLayoutPanel.Controls.Clear();
+            _bookEditor = new BookEditor(this, book);
+            BookEditorFlowLayoutPanel.Controls.Add(_bookEditor);
+            sectionLabel.Text = "Edit book";
         }
     }
+
 }

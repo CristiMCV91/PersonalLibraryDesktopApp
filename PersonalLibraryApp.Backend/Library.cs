@@ -37,7 +37,7 @@ namespace PersonalLibraryApp.Backend
             return book;
         }
 
-        public static Book PopulateAdditionalData(this Book book, string genre = "", int pages = 0, string isbn = "", string status = "", int bookmark = 0 )
+        public static Book PopulateAdditionalData(this Book book, string genre = "", int pages = 0, string isbn = "", string status = "", int bookmark = 0)
         {
             return book
                 .SetGenre(genre)
@@ -50,6 +50,11 @@ namespace PersonalLibraryApp.Backend
         public static void Sort()
         {
             _booksInternal = [.. _booksInternal.OrderBy(x => x.Title)];
+        }
+
+        public static void DeleteBook(Book book)
+        { 
+            _booksInternal.Remove(book);
         }
 
     }

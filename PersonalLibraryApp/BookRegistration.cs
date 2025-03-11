@@ -13,6 +13,7 @@ namespace PersonalLibraryApp
 {
     public partial class BookRegistration : UserControl
     {
+        private MainWindow _mainWindow;
         public readonly Book Book;
 
         public string TitleText { get => TitleLabel.Text; set => TitleLabel.Text = value; }
@@ -24,10 +25,11 @@ namespace PersonalLibraryApp
             InitializeComponent();
         }
 
-        public BookRegistration(Book book)
+        public BookRegistration(MainWindow mainWindow, Book book)
         {
             InitializeComponent();
 
+            _mainWindow = mainWindow;
             Book = book;
 
             UpdateUI();
@@ -44,6 +46,15 @@ namespace PersonalLibraryApp
             AuthorText = Book.Author.ToUpper();
             StatusText = Book.Status.Substring(0, 1).ToUpper() + Book.Status.Substring(1).ToLower();
 
+        }
+
+        private void DetailsButton_Click(object sender, EventArgs e)
+        {
+            if (_mainWindow != null)
+            {
+                _mainWindow.sectionLabel.Text = Book.Author;
+                _mainWindow.OpenBookDetails(Book);
+            }
         }
     }
 }

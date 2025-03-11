@@ -74,6 +74,7 @@
             DetailsButton.Size = new Size(23, 23);
             DetailsButton.TabIndex = 3;
             DetailsButton.UseVisualStyleBackColor = true;
+            DetailsButton.Click += DetailsButton_Click;
             // 
             // panel1
             // 

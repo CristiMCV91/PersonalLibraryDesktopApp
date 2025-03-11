@@ -44,40 +44,43 @@
         }
         public Book SetStatus(string status)
         {
-            //if (status.ToLower() == "unread")
-            //{
-                
-            //    this.SetBookmark(0);
-            //    Status = status.ToLower();
-            //    return this;
-            //}
-            //else if (status.ToLower() == "read")
-            //{
-            //    this.SetBookmark(this.Pages);
-            //    Status = status.ToLower();
-            //    return this;
-            //}
-            
+            if (status.ToLower() == "unread")
+            {
+
+                this.SetBookmark(0);
+                Status = status.ToLower();
+                return this;
+            }
+            else if (status.ToLower() == "read")
+            {
+                this.SetBookmark(this.Pages);
+                Status = status.ToLower();
+                return this;
+            }
+
             Status = status.ToLower();
             return this;
         }
         public Book SetBookmark(int bookmark)
         {
-            //if (bookmark == this.Pages)
-            //{
-            //    this.SetStatus("Read");
-            //    Bookmark = bookmark;
-            //    return this;
-            //} else if (bookmark == 0)
-            //{
-            //    this.SetStatus("Unread");
-            //    Bookmark = bookmark;
-            //    return this;
-            //}
+            if (bookmark == this.Pages)
+            {
+                this.SetStatus("Read");
+                Bookmark = bookmark;
+                return this;
+            }
+            else if (bookmark == 0)
+            {
+                this.SetStatus("Unread");
+                Bookmark = bookmark;
+                return this;
+            }
 
             Bookmark = bookmark;
             return this;
         }
+
+        
 
 
 
