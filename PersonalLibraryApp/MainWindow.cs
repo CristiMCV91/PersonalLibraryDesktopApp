@@ -4,33 +4,35 @@ namespace PersonalLibraryApp
 {
     public partial class MainWindow : Form
     {
-        private static MainWindow _instance;
-        private static readonly object _lock = new object();
+        //private static MainWindow _instance;
+        //private static readonly object _lock = new object();
 
         private string _status = string.Empty;
         private BookDetails _bookDetails = null;
         private BookEditor _bookEditor = null;
+        private bool backFromEdit = false;
+        private Book Book;
         public MainWindow()
         {
             InitializeComponent();
         }
-        public static MainWindow Instance
-        {
-            get
-            {
-                if (_instance == null || _instance.IsDisposed)
-                {
-                    lock (_lock)
-                    {
-                        if (_instance == null || _instance.IsDisposed)
-                        {
-                            _instance = new MainWindow();
-                        }
-                    }
-                }
-                return _instance;
-            }
-        }
+        //public static MainWindow Instance
+        //{
+        //    get
+        //    {
+        //        if (_instance == null || _instance.IsDisposed)
+        //        {
+        //            lock (_lock)
+        //            {
+        //                if (_instance == null || _instance.IsDisposed)
+        //                {
+        //                    _instance = new MainWindow();
+        //                }
+        //            }
+        //        }
+        //        return _instance;
+        //    }
+        //}
 
         protected override void OnLoad(EventArgs e)
         {
@@ -64,6 +66,7 @@ namespace PersonalLibraryApp
 
         internal void homeButton_Click(object sender, EventArgs e)
         {
+            PopulateBooksUI();
             sectionLabel.Text = "Home";
             homePanel.Visible = true;
             booksPanel.Visible = false;
@@ -71,12 +74,14 @@ namespace PersonalLibraryApp
             accountPanel.Visible = false;
             BookEditorFlowLayoutPanel.Visible = false;
             BookDetailsFlowLayoutPanel.Visible = false;
+            BackPictureButton.Visible = false;
             CloseBookDetails();
 
         }
 
         internal void bookButton_Click(object sender, EventArgs e)
         {
+            PopulateBooksUI();
             sectionLabel.Text = "Books";
             homePanel.Visible = false;
             booksPanel.Visible = true;
@@ -84,6 +89,7 @@ namespace PersonalLibraryApp
             accountPanel.Visible = false;
             BookEditorFlowLayoutPanel.Visible = false;
             BookDetailsFlowLayoutPanel.Visible = false;
+            BackPictureButton.Visible = false;
             CloseBookDetails();
         }
 
@@ -131,6 +137,7 @@ namespace PersonalLibraryApp
 
         internal void BackPictureButton_Click(object sender, EventArgs e)
         {
+            PopulateBooksUI();
             sectionLabel.Text = "Books";
             homePanel.Visible = false;
             booksPanel.Visible = true;
@@ -139,10 +146,17 @@ namespace PersonalLibraryApp
             footerPanel.Visible = true;
             BookDetailsFlowLayoutPanel.Visible = false;
             BookEditorFlowLayoutPanel.Visible = false;
-            BackPictureButton.Visible = false;
-            PopulateBooksUI();
-            CloseBookDetails();
+            BackPictureButton.Visible = false;                        
             CloseBookEditor();
+            if (backFromEdit)
+            {
+                OpenBookDetails(Book);
+                backFromEdit = false;
+            }
+            else {
+                CloseBookDetails();
+            }
+            
 
         }
 
@@ -168,12 +182,14 @@ namespace PersonalLibraryApp
             BookDetailsFlowLayoutPanel.Controls.Clear();
             BookDetailsFlowLayoutPanel.Visible = false;
             _bookDetails = null;
+            Book = null;
 
         }
 
         public void DeleteBook(Book book, EventArgs e)
         { 
             CloseBookDetails();
+            PopulateBooksUI();
             Library.DeleteBook(book);
             BackPictureButton_Click(BackPictureButton, e);
         }
@@ -202,6 +218,8 @@ namespace PersonalLibraryApp
             _bookEditor = new BookEditor(this, book);
             BookEditorFlowLayoutPanel.Controls.Add(_bookEditor);
             sectionLabel.Text = "Edit book";
+            backFromEdit = true;
+            Book = book;
         }
     }
 

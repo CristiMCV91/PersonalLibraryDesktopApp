@@ -144,7 +144,7 @@ namespace PersonalLibraryApp
                 return;
             }
 
-            if (ReadingRadioButton.Checked && (!int.TryParse(BookmarkTextBox.Text, out int b) || int.Parse(BookmarkTextBox.Text) < 0))
+            if (ReadingRadioButton.Checked && (!int.TryParse(BookmarkTextBox.Text, out int b) || int.Parse(BookmarkTextBox.Text) < 0) || int.Parse(BookmarkTextBox.Text) > int.Parse(PagesTextBox.Text))
             {
                 WarningLabel.Text = "Please insert correct bookmark";
                 return;
@@ -225,7 +225,7 @@ namespace PersonalLibraryApp
                         BookmarkTextBox.Text = Book.Bookmark.ToString();
                         break;
                     case "read":
-                        ReadingRadioButton.Checked = true;
+                        ReadRadioButton.Checked = true;
                         BookmarkTextBox.Text = string.Empty;
                         break;
                     default:

@@ -37,14 +37,35 @@ namespace PersonalLibraryApp.Backend
             return book;
         }
 
+        //public static Book PopulateAdditionalData(this Book book, string genre = "", int pages = 0, string isbn = "", string status = "")
+        //{
+        //    return book
+        //        .SetGenre(genre)
+        //        .SetPages(pages)
+        //        .SetIsbn(isbn)
+        //        .SetStatus(status);
+        //}
         public static Book PopulateAdditionalData(this Book book, string genre = "", int pages = 0, string isbn = "", string status = "", int bookmark = 0)
         {
-            return book
+            book
                 .SetGenre(genre)
                 .SetPages(pages)
                 .SetIsbn(isbn)
-                .SetStatus(status)
-                .SetBookmark(bookmark);
+                .SetStatus(status);
+            if (status.ToLower() == "read")
+            {
+                book.SetBookmark(pages);
+            }
+            else if (status.ToLower() == "unread")
+            {
+                book.SetBookmark(0);
+            }
+            else 
+            {
+                book.SetBookmark(bookmark);
+            }
+                
+            return book;
         }
 
         public static void Sort()
