@@ -42,10 +42,10 @@
             // 
             BookCoverPictureBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             BookCoverPictureBox.Image = (Image)resources.GetObject("BookCoverPictureBox.Image");
-            BookCoverPictureBox.Location = new Point(233, 12);
+            BookCoverPictureBox.Location = new Point(237, 11);
             BookCoverPictureBox.Margin = new Padding(0);
             BookCoverPictureBox.Name = "BookCoverPictureBox";
-            BookCoverPictureBox.Size = new Size(73, 103);
+            BookCoverPictureBox.Size = new Size(71, 104);
             BookCoverPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             BookCoverPictureBox.TabIndex = 0;
             BookCoverPictureBox.TabStop = false;

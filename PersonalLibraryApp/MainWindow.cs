@@ -1,4 +1,5 @@
 using PersonalLibraryApp.Backend;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace PersonalLibraryApp
 {
@@ -12,31 +13,18 @@ namespace PersonalLibraryApp
         private BookEditor _bookEditor = null;
         private bool backFromEdit = false;
         private Book Book;
+        private List<Book> _bookList = null;
+
+
         public MainWindow()
         {
             InitializeComponent();
         }
-        //public static MainWindow Instance
-        //{
-        //    get
-        //    {
-        //        if (_instance == null || _instance.IsDisposed)
-        //        {
-        //            lock (_lock)
-        //            {
-        //                if (_instance == null || _instance.IsDisposed)
-        //                {
-        //                    _instance = new MainWindow();
-        //                }
-        //            }
-        //        }
-        //        return _instance;
-        //    }
-        //}
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+            SortComboBox.SelectedIndex = 0;
             homeButton_Click(homeButton, e);
 
             PopulateBooksUI();
@@ -55,6 +43,12 @@ namespace PersonalLibraryApp
 
                     homeFlowLayoutPanel.Controls.Add(bookCard);
                 }
+
+
+            }
+
+            foreach (Book item in Library.ReoderBookList)
+            {
 
                 BookRegistration bookRegistration = new BookRegistration(this, item);
 
@@ -81,6 +75,7 @@ namespace PersonalLibraryApp
 
         internal void bookButton_Click(object sender, EventArgs e)
         {
+           
             PopulateBooksUI();
             sectionLabel.Text = "Books";
             homePanel.Visible = false;
@@ -146,17 +141,18 @@ namespace PersonalLibraryApp
             footerPanel.Visible = true;
             BookDetailsFlowLayoutPanel.Visible = false;
             BookEditorFlowLayoutPanel.Visible = false;
-            BackPictureButton.Visible = false;                        
+            BackPictureButton.Visible = false;
             CloseBookEditor();
             if (backFromEdit)
             {
                 OpenBookDetails(Book);
                 backFromEdit = false;
             }
-            else {
+            else
+            {
                 CloseBookDetails();
             }
-            
+
 
         }
 
@@ -187,7 +183,7 @@ namespace PersonalLibraryApp
         }
 
         public void DeleteBook(Book book, EventArgs e)
-        { 
+        {
             CloseBookDetails();
             PopulateBooksUI();
             Library.DeleteBook(book);
@@ -206,7 +202,7 @@ namespace PersonalLibraryApp
         {
             BookEditorFlowLayoutPanel.Controls.Clear();
             BookEditorFlowLayoutPanel.Visible = false;
-            _bookEditor= null;
+            _bookEditor = null;
 
         }
 
@@ -220,6 +216,31 @@ namespace PersonalLibraryApp
             sectionLabel.Text = "Edit book";
             backFromEdit = true;
             Book = book;
+        }
+
+
+
+        private void SortComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (SortComboBox.SelectedIndex)
+            {
+                case 0:
+                    Library.Unsort();
+                    PopulateBooksUI();
+                    break;
+                case 1:
+                    Library.SortBy("title");
+                    PopulateBooksUI();
+                    break;
+                case 2:
+                    Library.SortBy("author");
+                    PopulateBooksUI();
+                    break;
+                case 3:
+                    Library.SortBy("status");
+                    PopulateBooksUI();
+                    break;
+            }
         }
     }
 

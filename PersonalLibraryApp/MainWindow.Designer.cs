@@ -42,7 +42,7 @@
             booksPanel = new Panel();
             NewBookButton = new Button();
             label1 = new Label();
-            comboBox1 = new ComboBox();
+            SortComboBox = new ComboBox();
             booksFlowLayoutPanel = new FlowLayoutPanel();
             accountPanel = new Panel();
             label3 = new Label();
@@ -126,10 +126,10 @@
             // 
             // headerPanel
             // 
+            headerPanel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             headerPanel.BackColor = Color.FromArgb(115, 103, 240);
             headerPanel.Controls.Add(BackPictureButton);
             headerPanel.Controls.Add(sectionLabel);
-            headerPanel.Dock = DockStyle.Top;
             headerPanel.Location = new Point(0, 0);
             headerPanel.Margin = new Padding(0);
             headerPanel.Name = "headerPanel";
@@ -163,44 +163,49 @@
             // 
             // homePanel
             // 
+            homePanel.Anchor = AnchorStyles.None;
             homePanel.BackColor = Color.White;
             homePanel.Controls.Add(homeFlowLayoutPanel);
-            homePanel.Dock = DockStyle.Fill;
             homePanel.Location = new Point(0, 56);
+            homePanel.Margin = new Padding(0);
             homePanel.Name = "homePanel";
-            homePanel.Size = new Size(384, 549);
+            homePanel.Size = new Size(384, 550);
             homePanel.TabIndex = 2;
             // 
             // homeFlowLayoutPanel
             // 
-            homeFlowLayoutPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             homeFlowLayoutPanel.AutoScroll = true;
+            homeFlowLayoutPanel.BackColor = Color.White;
+            homeFlowLayoutPanel.Dock = DockStyle.Bottom;
             homeFlowLayoutPanel.FlowDirection = FlowDirection.TopDown;
-            homeFlowLayoutPanel.Location = new Point(12, 0);
+            homeFlowLayoutPanel.Location = new Point(0, 0);
+            homeFlowLayoutPanel.Margin = new Padding(0);
             homeFlowLayoutPanel.Name = "homeFlowLayoutPanel";
-            homeFlowLayoutPanel.Size = new Size(372, 549);
+            homeFlowLayoutPanel.Size = new Size(384, 550);
             homeFlowLayoutPanel.TabIndex = 1;
             homeFlowLayoutPanel.WrapContents = false;
             // 
             // booksPanel
             // 
+            booksPanel.Anchor = AnchorStyles.None;
             booksPanel.BackColor = Color.White;
             booksPanel.Controls.Add(NewBookButton);
             booksPanel.Controls.Add(label1);
-            booksPanel.Controls.Add(comboBox1);
+            booksPanel.Controls.Add(SortComboBox);
             booksPanel.Controls.Add(booksFlowLayoutPanel);
-            booksPanel.Dock = DockStyle.Fill;
             booksPanel.Location = new Point(0, 56);
+            booksPanel.Margin = new Padding(0);
             booksPanel.Name = "booksPanel";
-            booksPanel.Size = new Size(384, 549);
+            booksPanel.Size = new Size(384, 550);
             booksPanel.TabIndex = 3;
             // 
             // NewBookButton
             // 
+            NewBookButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             NewBookButton.FlatAppearance.BorderSize = 0;
             NewBookButton.FlatStyle = FlatStyle.Flat;
             NewBookButton.Image = (Image)resources.GetObject("NewBookButton.Image");
-            NewBookButton.Location = new Point(342, 15);
+            NewBookButton.Location = new Point(345, 10);
             NewBookButton.Margin = new Padding(0);
             NewBookButton.Name = "NewBookButton";
             NewBookButton.Size = new Size(30, 30);
@@ -210,32 +215,36 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label1.AutoSize = true;
             label1.Font = new Font("Calibri", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(12, 23);
+            label1.Location = new Point(12, 16);
             label1.Name = "label1";
             label1.Size = new Size(46, 15);
             label1.TabIndex = 3;
             label1.Text = "Sort by";
             // 
-            // comboBox1
+            // SortComboBox
             // 
-            comboBox1.FlatStyle = FlatStyle.Flat;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Author", "Status" });
-            comboBox1.Location = new Point(62, 20);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(78, 23);
-            comboBox1.TabIndex = 2;
-            comboBox1.Text = "Sort by";
+            SortComboBox.Anchor = AnchorStyles.None;
+            SortComboBox.FlatStyle = FlatStyle.Flat;
+            SortComboBox.FormattingEnabled = true;
+            SortComboBox.Items.AddRange(new object[] { "Default", "Title", "Author", "Status" });
+            SortComboBox.Location = new Point(60, 14);
+            SortComboBox.Name = "SortComboBox";
+            SortComboBox.Size = new Size(104, 23);
+            SortComboBox.TabIndex = 2;
+            SortComboBox.SelectedIndexChanged += SortComboBox_SelectedIndexChanged;
             // 
             // booksFlowLayoutPanel
             // 
-            booksFlowLayoutPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             booksFlowLayoutPanel.AutoScroll = true;
-            booksFlowLayoutPanel.Location = new Point(12, 59);
+            booksFlowLayoutPanel.BackColor = Color.White;
+            booksFlowLayoutPanel.Dock = DockStyle.Bottom;
+            booksFlowLayoutPanel.Location = new Point(0, 50);
+            booksFlowLayoutPanel.Margin = new Padding(0);
             booksFlowLayoutPanel.Name = "booksFlowLayoutPanel";
-            booksFlowLayoutPanel.Size = new Size(372, 549);
+            booksFlowLayoutPanel.Size = new Size(384, 500);
             booksFlowLayoutPanel.TabIndex = 1;
             // 
             // accountPanel
@@ -243,9 +252,9 @@
             accountPanel.BackColor = Color.White;
             accountPanel.Controls.Add(label3);
             accountPanel.Dock = DockStyle.Fill;
-            accountPanel.Location = new Point(0, 56);
+            accountPanel.Location = new Point(0, 0);
             accountPanel.Name = "accountPanel";
-            accountPanel.Size = new Size(384, 549);
+            accountPanel.Size = new Size(384, 661);
             accountPanel.TabIndex = 4;
             // 
             // label3
@@ -262,9 +271,9 @@
             searchPanel.BackColor = Color.White;
             searchPanel.Controls.Add(label4);
             searchPanel.Dock = DockStyle.Fill;
-            searchPanel.Location = new Point(0, 56);
+            searchPanel.Location = new Point(0, 0);
             searchPanel.Name = "searchPanel";
-            searchPanel.Size = new Size(384, 549);
+            searchPanel.Size = new Size(384, 661);
             searchPanel.TabIndex = 5;
             // 
             // label4
@@ -289,7 +298,6 @@
             // BookEditorFlowLayoutPanel
             // 
             BookEditorFlowLayoutPanel.BackColor = Color.White;
-            BookEditorFlowLayoutPanel.Dock = DockStyle.Top;
             BookEditorFlowLayoutPanel.Location = new Point(0, 56);
             BookEditorFlowLayoutPanel.Margin = new Padding(0);
             BookEditorFlowLayoutPanel.Name = "BookEditorFlowLayoutPanel";
@@ -302,14 +310,14 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(384, 661);
-            Controls.Add(BookEditorFlowLayoutPanel);
-            Controls.Add(BookDetailsFlowLayoutPanel);
             Controls.Add(booksPanel);
+            Controls.Add(BookEditorFlowLayoutPanel);
             Controls.Add(homePanel);
-            Controls.Add(searchPanel);
-            Controls.Add(accountPanel);
             Controls.Add(headerPanel);
             Controls.Add(footerPanel);
+            Controls.Add(accountPanel);
+            Controls.Add(searchPanel);
+            Controls.Add(BookDetailsFlowLayoutPanel);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "MainWindow";
             ShowIcon = false;
@@ -345,7 +353,7 @@
         private Label label3;
         private FlowLayoutPanel homeFlowLayoutPanel;
         private FlowLayoutPanel booksFlowLayoutPanel;
-        private ComboBox comboBox1;
+        private ComboBox SortComboBox;
         private Label label1;
         private Button NewBookButton;
         internal PictureBox BackPictureButton;
