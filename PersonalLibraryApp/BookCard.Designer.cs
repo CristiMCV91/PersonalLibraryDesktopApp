@@ -42,13 +42,14 @@
             // 
             BookCoverPictureBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             BookCoverPictureBox.Image = (Image)resources.GetObject("BookCoverPictureBox.Image");
-            BookCoverPictureBox.Location = new Point(237, 11);
+            BookCoverPictureBox.Location = new Point(237, 15);
             BookCoverPictureBox.Margin = new Padding(0);
             BookCoverPictureBox.Name = "BookCoverPictureBox";
-            BookCoverPictureBox.Size = new Size(71, 104);
+            BookCoverPictureBox.Size = new Size(100, 100);
             BookCoverPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             BookCoverPictureBox.TabIndex = 0;
             BookCoverPictureBox.TabStop = false;
+            BookCoverPictureBox.Click += BookCoverPictureBox_Click;
             // 
             // TitleLabel
             // 
@@ -106,7 +107,7 @@
             Controls.Add(BookCoverPictureBox);
             Margin = new Padding(5, 10, 5, 10);
             Name = "BookCard";
-            Size = new Size(320, 132);
+            Size = new Size(350, 132);
             ((System.ComponentModel.ISupportInitialize)BookCoverPictureBox).EndInit();
             ResumeLayout(false);
             PerformLayout();

@@ -14,13 +14,15 @@ namespace PersonalLibraryApp
 {
     public partial class BookCard : UserControl
     {
+        private MainWindow _mainWindow;
         public readonly Book Book;
 
         public string TitleText { get => TitleLabel.Text; set => TitleLabel.Text = value; }
         public string AuthorText { get => AuthorLabel.Text; set => AuthorLabel.Text = value.ToUpper(); }
         public string BookmarkPage { get => BookmarkLabel.Text; set => BookmarkLabel.Text = "BOOKMARK: page " + value; }
-        
-        public string BookmarkPercent { 
+
+        public string BookmarkPercent
+        {
             get => ReadingPercentLabel.Text;
             set => ReadingPercentLabel.Text = value + "%";
         }
@@ -30,7 +32,7 @@ namespace PersonalLibraryApp
         public Image? BookCoverImage
         {
             get => BookCoverPictureBox.Image;
-            set 
+            set
             {
                 BookCoverPictureBox.Image = value;
                 BookCoverPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -42,10 +44,10 @@ namespace PersonalLibraryApp
             InitializeComponent();
         }
 
-        public BookCard(Book book)
+        public BookCard(MainWindow mainWindow, Book book)
         {
             InitializeComponent();
-
+            _mainWindow = mainWindow;
             Book = book;
 
             UpdateUI();
@@ -64,11 +66,20 @@ namespace PersonalLibraryApp
             AuthorText = Book.Author;
             BookmarkPage = (Book.Bookmark.ToString() + "/" + Book.Pages.ToString());
 
-            int percent = (int)(((float)Book.Bookmark / Book.Pages)*100);
+            int percent = (int)(((float)Book.Bookmark / Book.Pages) * 100);
             BookmarkPercent = percent.ToString();
             ReadingBar = percent;
 
 
+        }
+
+        private void BookCoverPictureBox_Click(object sender, EventArgs e)
+        {
+            if (_mainWindow != null)
+            {
+                _mainWindow.sectionLabel.Text = Book.Author;
+                _mainWindow.OpenBookDetails(Book);
+            }
         }
     }
 }

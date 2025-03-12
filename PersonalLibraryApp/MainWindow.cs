@@ -12,6 +12,8 @@ namespace PersonalLibraryApp
         private BookDetails _bookDetails = null;
         private BookEditor _bookEditor = null;
         private bool backFromEdit = false;
+        private bool backFromSearch = false;
+        private bool backFromHome = false;
         private Book Book;
         private List<Book> _bookList = null;
 
@@ -39,7 +41,7 @@ namespace PersonalLibraryApp
             {
                 if (item.Status.ToLower() == "reading" || item.Status.ToLower() == "unread")
                 {
-                    BookCard bookCard = new BookCard(item);
+                    BookCard bookCard = new BookCard(this,item);
 
                     homeFlowLayoutPanel.Controls.Add(bookCard);
                 }
@@ -69,13 +71,15 @@ namespace PersonalLibraryApp
             BookEditorFlowLayoutPanel.Visible = false;
             BookDetailsFlowLayoutPanel.Visible = false;
             BackPictureButton.Visible = false;
+            backFromSearch = false;
+            backFromHome = true;
             CloseBookDetails();
 
         }
 
         internal void bookButton_Click(object sender, EventArgs e)
         {
-           
+
             PopulateBooksUI();
             sectionLabel.Text = "Books";
             homePanel.Visible = false;
@@ -85,6 +89,8 @@ namespace PersonalLibraryApp
             BookEditorFlowLayoutPanel.Visible = false;
             BookDetailsFlowLayoutPanel.Visible = false;
             BackPictureButton.Visible = false;
+            backFromSearch = false;
+            backFromHome = false;
             CloseBookDetails();
         }
 
@@ -97,6 +103,8 @@ namespace PersonalLibraryApp
             accountPanel.Visible = false;
             BookEditorFlowLayoutPanel.Visible = false;
             BookDetailsFlowLayoutPanel.Visible = false;
+            backFromSearch = true;
+            backFromHome = false;
             CloseBookDetails();
         }
 
@@ -108,6 +116,8 @@ namespace PersonalLibraryApp
             searchPanel.Visible = false;
             accountPanel.Visible = true;
             BookEditorFlowLayoutPanel.Visible = false;
+            backFromSearch = false;
+            backFromHome = false;
             CloseBookDetails();
         }
 
@@ -151,6 +161,8 @@ namespace PersonalLibraryApp
             else
             {
                 CloseBookDetails();
+                if (backFromSearch) searchButton_Click(sender, e);
+                if (backFromHome) homeButton_Click(sender, e);
             }
 
 
@@ -240,6 +252,20 @@ namespace PersonalLibraryApp
                     Library.SortBy("status");
                     PopulateBooksUI();
                     break;
+            }
+        }
+
+        private void SearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            Library.SearchBooks(SearchTextBox.Text);
+            searchFlowLayoutPanel.Controls.Clear();
+            foreach (Book item in Library.SearchBookList)
+            {
+
+                BookRegistration bookRegistration = new BookRegistration(this, item);
+
+                searchFlowLayoutPanel.Controls.Add(bookRegistration);
+
             }
         }
     }

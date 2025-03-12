@@ -13,6 +13,7 @@ namespace PersonalLibraryApp.Backend
         private static List<Book> _booksInternal = [];
         public static List<Book> BooksList => _booksInternal;
         public static List<Book> ReoderBookList;
+        public static List<Book> SearchBookList = [];
 
         public static Book AddNewBook(string title, string author, string genre = "", int pages = 0, string isbn = "", string status = "", int bookmark = 0)
         {
@@ -104,5 +105,22 @@ namespace PersonalLibraryApp.Backend
             ReoderBookList = _booksInternal;
         }
 
+        public static void SearchBooks(string query)
+        {
+            query = query.ToLower();
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                SearchBookList = []; // Returnează o listă goală dacă inputul este invalid.
+            }
+            else 
+            {
+                SearchBookList =
+                    _booksInternal
+                    .Where(book => book.Title.ToLower().Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                                   book.Author.ToLower().Contains(query, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+            }
+
+        }
     }
 }

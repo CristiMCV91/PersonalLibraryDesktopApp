@@ -47,7 +47,9 @@
             accountPanel = new Panel();
             label3 = new Label();
             searchPanel = new Panel();
+            SearchTextBox = new TextBox();
             label4 = new Label();
+            searchFlowLayoutPanel = new FlowLayoutPanel();
             BookDetailsFlowLayoutPanel = new FlowLayoutPanel();
             BookEditorFlowLayoutPanel = new FlowLayoutPanel();
             footerPanel.SuspendLayout();
@@ -251,39 +253,59 @@
             // 
             accountPanel.BackColor = Color.White;
             accountPanel.Controls.Add(label3);
-            accountPanel.Dock = DockStyle.Fill;
-            accountPanel.Location = new Point(0, 0);
+            accountPanel.Location = new Point(0, 56);
             accountPanel.Name = "accountPanel";
-            accountPanel.Size = new Size(384, 661);
+            accountPanel.Size = new Size(384, 550);
             accountPanel.TabIndex = 4;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(168, 131);
+            label3.Location = new Point(12, 10);
             label3.Name = "label3";
-            label3.Size = new Size(52, 15);
+            label3.Size = new Size(93, 15);
             label3.TabIndex = 0;
-            label3.Text = "Account";
+            label3.Text = "To be developed";
             // 
             // searchPanel
             // 
+            searchPanel.Anchor = AnchorStyles.None;
             searchPanel.BackColor = Color.White;
+            searchPanel.Controls.Add(SearchTextBox);
             searchPanel.Controls.Add(label4);
-            searchPanel.Dock = DockStyle.Fill;
-            searchPanel.Location = new Point(0, 0);
+            searchPanel.Controls.Add(searchFlowLayoutPanel);
+            searchPanel.Location = new Point(0, 56);
+            searchPanel.Margin = new Padding(0);
             searchPanel.Name = "searchPanel";
-            searchPanel.Size = new Size(384, 661);
+            searchPanel.Size = new Size(384, 550);
             searchPanel.TabIndex = 5;
+            // 
+            // SearchTextBox
+            // 
+            SearchTextBox.Location = new Point(71, 13);
+            SearchTextBox.Name = "SearchTextBox";
+            SearchTextBox.Size = new Size(271, 23);
+            SearchTextBox.TabIndex = 1;
+            SearchTextBox.TextChanged += SearchTextBox_TextChanged;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(168, 131);
+            label4.Font = new Font("Calibri", 9.75F, FontStyle.Bold);
+            label4.Location = new Point(16, 16);
             label4.Name = "label4";
-            label4.Size = new Size(42, 15);
+            label4.Size = new Size(49, 15);
             label4.TabIndex = 0;
-            label4.Text = "Search";
+            label4.Text = "SEARCH";
+            // 
+            // searchFlowLayoutPanel
+            // 
+            searchFlowLayoutPanel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            searchFlowLayoutPanel.AutoScroll = true;
+            searchFlowLayoutPanel.Location = new Point(12, 50);
+            searchFlowLayoutPanel.Name = "searchFlowLayoutPanel";
+            searchFlowLayoutPanel.Size = new Size(374, 500);
+            searchFlowLayoutPanel.TabIndex = 2;
             // 
             // BookDetailsFlowLayoutPanel
             // 
@@ -310,13 +332,13 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(384, 661);
+            Controls.Add(searchPanel);
+            Controls.Add(footerPanel);
+            Controls.Add(headerPanel);
+            Controls.Add(accountPanel);
             Controls.Add(booksPanel);
             Controls.Add(BookEditorFlowLayoutPanel);
             Controls.Add(homePanel);
-            Controls.Add(headerPanel);
-            Controls.Add(footerPanel);
-            Controls.Add(accountPanel);
-            Controls.Add(searchPanel);
             Controls.Add(BookDetailsFlowLayoutPanel);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "MainWindow";
@@ -359,5 +381,7 @@
         internal PictureBox BackPictureButton;
         private FlowLayoutPanel BookDetailsFlowLayoutPanel;
         private FlowLayoutPanel BookEditorFlowLayoutPanel;
+        private TextBox SearchTextBox;
+        private FlowLayoutPanel searchFlowLayoutPanel;
     }
 }
