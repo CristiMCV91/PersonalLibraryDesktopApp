@@ -20,7 +20,9 @@ Personal Library App is a Windows Forms desktop application designed to help use
 ## Home
 The HOME screen displays unread and currently reading books, providing an overview of the reading status. Clicking on a book icon opens its details.
 #### Home Screen
-<img src="Screenshots/Home.png" alt="Home Screen" style="border: 1px solid gray;">
+<p align="left">
+  <img src="Screenshots/Home.png" style="border: 2px solid gray;">
+</p>
 
 
 ## Books
