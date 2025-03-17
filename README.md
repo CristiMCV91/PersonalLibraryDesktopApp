@@ -26,7 +26,7 @@ The HOME screen displays unread and currently reading books, providing an overvi
 ## Books
 The BOOKS screen lists all books in the personal library. Here, you can sort books (Default, Title, Author, Status), edit book details, and add new books.
 #### Books Screen
-![Books Screen](Screenshots/Books.png)
+<img src="Screenshots/Books.png" alt="Books Screen" style="border: 1px solid gray;">
 
 ### Book Info
 Clicking the info icon opens the book details, where users can edit, delete, or mark books as read/unread.
