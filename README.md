@@ -3,9 +3,10 @@
 ## Description
 Personal Library App is a Windows Forms desktop application designed to help users manage their book collections efficiently. Users can add, edit, delete, and search for books within the application. The app features an intuitive user interface with dedicated sections for home, book management, searching, and future account management.
 
-- [Application Diagram [PDF]](Documentation/ApplicationDiagram.pdf)
+- <a href="https://github.com/CristiMCV91/PersonalLibraryDesktopApp/blob/main/Documentation/AplicationDiagram.pdf" target="_blank">Aplication Diagram [PDF]</a>  
+- <a href="https://github.com/CristiMCV91/PersonalLibraryDesktopApp/blob/main/Documentation/ApplicationWireframeDesign.pdf" target="_blank">Project Wireframes [PDF]</a>  
 
-- [Project Wireframes [PDF]](Documentation/ApplicationWireframeDesign.pdf)
+
 
 ## Features
 - **Home Page**: Displays books marked as 'Reading' or 'Unread' for a quick overview.
@@ -19,7 +20,8 @@ Personal Library App is a Windows Forms desktop application designed to help use
 ## Home
 The HOME screen displays unread and currently reading books, providing an overview of the reading status. Clicking on a book icon opens its details.
 #### Home Screen
-![Home Screen](Screenshots/Home.png)
+<img src="Screenshots/Home.png" alt="Home Screen" style="border: 1px solid gray;">
+
 
 ## Books
 The BOOKS screen lists all books in the personal library. Here, you can sort books (Default, Title, Author, Status), edit book details, and add new books.
