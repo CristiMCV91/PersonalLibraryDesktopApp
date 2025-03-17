@@ -3,9 +3,9 @@
 ## Description
 Personal Library App is a Windows Forms desktop application designed to help users manage their book collections efficiently. Users can add, edit, delete, and search for books within the application. The app features an intuitive user interface with dedicated sections for home, book management, searching, and future account management.
 
-- [Application Diagram [PDF]](./Documentation/applicationDiagram.pdf)
+- [Application Diagram [PDF]](Documentation/ApplicationDiagram.pdf)
 
-- [Project Wireframes [PDF]](./Documentation/ApplicationWireframeDesign.pdf)
+- [Project Wireframes [PDF]](Documentation/ApplicationWireframeDesign.pdf)
 
 ## Features
 - **Home Page**: Displays books marked as 'Reading' or 'Unread' for a quick overview.
@@ -19,47 +19,47 @@ Personal Library App is a Windows Forms desktop application designed to help use
 ## Home
 The HOME screen displays unread and currently reading books, providing an overview of the reading status. Clicking on a book icon opens its details.
 #### Home Screen
-![Home Screen](Screenshots/home.png)
+![Home Screen](Screenshots/Home.png)
 
 ## Books
 The BOOKS screen lists all books in the personal library. Here, you can sort books (Default, Title, Author, Status), edit book details, and add new books.
 #### Books Screen
-![Books Screen](Screenshots/books.png)
+![Books Screen](Screenshots/Books.png)
 
 ### Book Info
 Clicking the info icon opens the book details, where users can edit, delete, or mark books as read/unread.
 #### Book Info Screen
-![Book Info Screen](screenshots/BookInfo.png)
+![Book Info Screen](Screenshots/BookInfo.png)
 
 ### Edit Book
 In the edit book section, users can update book details and save the changes.
 #### Edit Book Screen
-![Edit Book Screen](screenshots/EditBook.png)
+![Edit Book Screen](Screenshots/EditBook.png)
 
 ### Add New Book
 This section allows users to add new books to the library.
 #### New Book Screen
-![New Book Screen](screenshots/NewBook.png)
+![New Book Screen](Screenshots/NewBook.png)
 
 ## Search
 The search section enables users to search for books by title or author.
 #### Search Screen
-![Search Screen](screenshots/search.png)
+![Search Screen](Screenshots/Search.png)
 
 ## Account
 The account section is currently a demo screen. Future iterations will include account creation and data synchronization.
 #### Account Screen
-![Account Screen](screenshots/account.png)
+![Account Screen](Screenshots/Account.png)
 
 ## Application Minimization
 When closed, the application runs in the background in the system tray. To exit, right-click the system tray icon and select "Exit."
 #### System Tray Screen
-![System Tray Screen](screenshots/systemtray.png)
+![System Tray Screen](Screenshots/SystemTray.png)
 
 ## Project Structure
 The frontend design and backend logic are separated into distinct projects.
 #### Project Structure
-![Project Structure](screenshots/projectstructure.png)
+![Project Structure](Screenshots/ProjectStructure.png)
 
 ## Technologies Used
 - **C#** (Windows Forms for UI development)
@@ -69,7 +69,7 @@ The frontend design and backend logic are separated into distinct projects.
 ## Installation
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-repo/PersonalLibraryApp.git
+   git clone https://github.com/CristiMCV91/PersonalLibraryDesktopApp.git
    ```
 2. Open the solution in Visual Studio.
 3. Build and run the project.
