@@ -398,13 +398,13 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(384, 661);
+            Controls.Add(homePanel);
+            Controls.Add(booksPanel);
+            Controls.Add(BookEditorFlowLayoutPanel);
             Controls.Add(accountPanel);
             Controls.Add(searchPanel);
             Controls.Add(footerPanel);
             Controls.Add(headerPanel);
-            Controls.Add(booksPanel);
-            Controls.Add(BookEditorFlowLayoutPanel);
-            Controls.Add(homePanel);
             Controls.Add(BookDetailsFlowLayoutPanel);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Icon = (Icon)resources.GetObject("$this.Icon");
