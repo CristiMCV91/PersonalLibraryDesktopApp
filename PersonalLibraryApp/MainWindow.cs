@@ -1,4 +1,5 @@
-using PersonalLibraryApp.Backend;
+﻿using PersonalLibraryApp.Backend;
+using System.Windows.Forms;
 using static System.Reflection.Metadata.BlobBuilder;
 
 namespace PersonalLibraryApp
@@ -16,6 +17,7 @@ namespace PersonalLibraryApp
         private bool backFromHome = false;
         private Book Book;
         private List<Book> _bookList = null;
+        private bool _oneTime_Notification = true;
 
 
         public MainWindow()
@@ -28,8 +30,10 @@ namespace PersonalLibraryApp
             base.OnLoad(e);
             SortComboBox.SelectedIndex = 0;
             homeButton_Click(homeButton, e);
-
             PopulateBooksUI();
+            notifyIcon1.ContextMenuStrip = contextMenu;
+
+
         }
 
         private void PopulateBooksUI()
@@ -41,7 +45,7 @@ namespace PersonalLibraryApp
             {
                 if (item.Status.ToLower() == "reading" || item.Status.ToLower() == "unread")
                 {
-                    BookCard bookCard = new BookCard(this,item);
+                    BookCard bookCard = new BookCard(this, item);
 
                     homeFlowLayoutPanel.Controls.Add(bookCard);
                 }
@@ -267,6 +271,66 @@ namespace PersonalLibraryApp
                 searchFlowLayoutPanel.Controls.Add(bookRegistration);
 
             }
+        }
+
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                var WindowLocation = this.Location;
+                Properties.Settings.Default.WindowLocation = WindowLocation;
+            }
+
+            Properties.Settings.Default.Save();
+
+            e.Cancel = true;
+            this.Hide();
+            notifyIcon1.Visible = true;
+            if (_oneTime_Notification)
+            {
+                notifyIcon1.ShowBalloonTip(3000, "Minimized application", "The application runs in the System Tray.", ToolTipIcon.Info);
+                _oneTime_Notification = false;
+            }
+
+        }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.WindowLocation != Point.Empty)
+            {
+                this.Location = Properties.Settings.Default.WindowLocation;
+            }
+            notifyIcon1.Visible = true;
+        }
+
+        private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+            notifyIcon1.Visible = false;
+        }
+
+        private void maximizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+            Application.ExitThread();
+            Environment.Exit(0);
+
+        }
+
+        private void SearchClearButton_Click(object sender, EventArgs e)
+        {
+            Library.SearchBooks("");
+            SearchTextBox.Text = "";
+            searchFlowLayoutPanel.Controls.Clear();
+
+
         }
     }
 

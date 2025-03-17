@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             footerPanel = new Panel();
             homeButton = new Button();
@@ -45,20 +46,28 @@
             SortComboBox = new ComboBox();
             booksFlowLayoutPanel = new FlowLayoutPanel();
             accountPanel = new Panel();
+            pictureBox1 = new PictureBox();
             label3 = new Label();
             searchPanel = new Panel();
+            SearchClearButton = new Button();
             SearchTextBox = new TextBox();
             label4 = new Label();
             searchFlowLayoutPanel = new FlowLayoutPanel();
             BookDetailsFlowLayoutPanel = new FlowLayoutPanel();
             BookEditorFlowLayoutPanel = new FlowLayoutPanel();
+            notifyIcon1 = new NotifyIcon(components);
+            contextMenu = new ContextMenuStrip(components);
+            maximizeToolStripMenuItem = new ToolStripMenuItem();
+            exitToolStripMenuItem = new ToolStripMenuItem();
             footerPanel.SuspendLayout();
             headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)BackPictureButton).BeginInit();
             homePanel.SuspendLayout();
             booksPanel.SuspendLayout();
             accountPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             searchPanel.SuspendLayout();
+            contextMenu.SuspendLayout();
             SuspendLayout();
             // 
             // footerPanel
@@ -156,9 +165,9 @@
             sectionLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             sectionLabel.Font = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             sectionLabel.ForeColor = Color.White;
-            sectionLabel.Location = new Point(107, 17);
+            sectionLabel.Location = new Point(60, 17);
             sectionLabel.Name = "sectionLabel";
-            sectionLabel.Size = new Size(170, 26);
+            sectionLabel.Size = new Size(264, 26);
             sectionLabel.TabIndex = 0;
             sectionLabel.Text = "Personal Library";
             sectionLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -252,25 +261,39 @@
             // accountPanel
             // 
             accountPanel.BackColor = Color.White;
+            accountPanel.Controls.Add(pictureBox1);
             accountPanel.Controls.Add(label3);
             accountPanel.Location = new Point(0, 56);
             accountPanel.Name = "accountPanel";
             accountPanel.Size = new Size(384, 550);
             accountPanel.TabIndex = 4;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(12, 50);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(356, 389);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 1;
+            pictureBox1.TabStop = false;
+            // 
             // label3
             // 
             label3.AutoSize = true;
+            label3.Font = new Font("Calibri", 9.75F, FontStyle.Bold);
+            label3.ForeColor = Color.Red;
             label3.Location = new Point(12, 10);
             label3.Name = "label3";
-            label3.Size = new Size(93, 15);
+            label3.Size = new Size(181, 15);
             label3.TabIndex = 0;
-            label3.Text = "To be developed";
+            label3.Text = "Demo Screen (To be developed)";
             // 
             // searchPanel
             // 
             searchPanel.Anchor = AnchorStyles.None;
             searchPanel.BackColor = Color.White;
+            searchPanel.Controls.Add(SearchClearButton);
             searchPanel.Controls.Add(SearchTextBox);
             searchPanel.Controls.Add(label4);
             searchPanel.Controls.Add(searchFlowLayoutPanel);
@@ -280,11 +303,26 @@
             searchPanel.Size = new Size(384, 550);
             searchPanel.TabIndex = 5;
             // 
+            // SearchClearButton
+            // 
+            SearchClearButton.BackColor = Color.FromArgb(115, 103, 240);
+            SearchClearButton.FlatAppearance.BorderSize = 0;
+            SearchClearButton.FlatStyle = FlatStyle.Flat;
+            SearchClearButton.Font = new Font("Calibri", 9.75F, FontStyle.Bold);
+            SearchClearButton.ForeColor = Color.White;
+            SearchClearButton.Location = new Point(310, 10);
+            SearchClearButton.Name = "SearchClearButton";
+            SearchClearButton.Size = new Size(58, 31);
+            SearchClearButton.TabIndex = 2;
+            SearchClearButton.Text = "CLEAR";
+            SearchClearButton.UseVisualStyleBackColor = false;
+            SearchClearButton.Click += SearchClearButton_Click;
+            // 
             // SearchTextBox
             // 
             SearchTextBox.Location = new Point(71, 13);
             SearchTextBox.Name = "SearchTextBox";
-            SearchTextBox.Size = new Size(271, 23);
+            SearchTextBox.Size = new Size(228, 23);
             SearchTextBox.TabIndex = 1;
             SearchTextBox.TextChanged += SearchTextBox_TextChanged;
             // 
@@ -327,24 +365,55 @@
             BookEditorFlowLayoutPanel.TabIndex = 0;
             BookEditorFlowLayoutPanel.Visible = false;
             // 
+            // notifyIcon1
+            // 
+            notifyIcon1.ContextMenuStrip = contextMenu;
+            notifyIcon1.Icon = (Icon)resources.GetObject("notifyIcon1.Icon");
+            notifyIcon1.Text = "notifyIcon1";
+            notifyIcon1.Visible = true;
+            notifyIcon1.DoubleClick += maximizeToolStripMenuItem_Click;
+            // 
+            // contextMenu
+            // 
+            contextMenu.Items.AddRange(new ToolStripItem[] { maximizeToolStripMenuItem, exitToolStripMenuItem });
+            contextMenu.Name = "contextMenu";
+            contextMenu.Size = new Size(126, 48);
+            // 
+            // maximizeToolStripMenuItem
+            // 
+            maximizeToolStripMenuItem.Name = "maximizeToolStripMenuItem";
+            maximizeToolStripMenuItem.Size = new Size(125, 22);
+            maximizeToolStripMenuItem.Text = "Maximize";
+            maximizeToolStripMenuItem.Click += maximizeToolStripMenuItem_Click;
+            // 
+            // exitToolStripMenuItem
+            // 
+            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            exitToolStripMenuItem.Size = new Size(125, 22);
+            exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
+            // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(384, 661);
+            Controls.Add(accountPanel);
             Controls.Add(searchPanel);
             Controls.Add(footerPanel);
             Controls.Add(headerPanel);
-            Controls.Add(accountPanel);
             Controls.Add(booksPanel);
             Controls.Add(BookEditorFlowLayoutPanel);
             Controls.Add(homePanel);
             Controls.Add(BookDetailsFlowLayoutPanel);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainWindow";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Personal Library";
+            FormClosing += MainWindow_FormClosing;
+            Load += MainWindow_Load;
             footerPanel.ResumeLayout(false);
             headerPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)BackPictureButton).EndInit();
@@ -353,8 +422,10 @@
             booksPanel.PerformLayout();
             accountPanel.ResumeLayout(false);
             accountPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             searchPanel.ResumeLayout(false);
             searchPanel.PerformLayout();
+            contextMenu.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -383,5 +454,11 @@
         private FlowLayoutPanel BookEditorFlowLayoutPanel;
         private TextBox SearchTextBox;
         private FlowLayoutPanel searchFlowLayoutPanel;
+        private NotifyIcon notifyIcon1;
+        private ContextMenuStrip contextMenu;
+        private ToolStripMenuItem maximizeToolStripMenuItem;
+        private ToolStripMenuItem exitToolStripMenuItem;
+        private Button SearchClearButton;
+        private PictureBox pictureBox1;
     }
 }
