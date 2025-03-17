@@ -60,14 +60,17 @@ namespace PersonalLibraryApp
             Isbn = IsbnTextBox.Text;
             Bookmark = BookmarkTextBox.Text;
 
-            if (Status == "Reading")
-            {
-                Library.AddNewBook(Title, Author, Genre, int.Parse(Pages), Isbn, Status, int.Parse(Bookmark));
-                
-            }
-            else
+            if (Status.ToLower() == "unread")
             {
                 Library.AddNewBook(Title, Author, Genre, int.Parse(Pages), Isbn, Status);
+            }
+            else if (Status.ToLower() == "reading")
+            {
+                Library.AddNewBook(Title, Author, Genre, int.Parse(Pages), Isbn, Status, int.Parse(Bookmark));
+            }
+            else if (Status.ToLower() == "read")
+            {
+                Library.AddNewBook(Title, Author, Genre, int.Parse(Pages), Isbn, Status, int.Parse(Pages));
             }
 
         }
@@ -79,29 +82,27 @@ namespace PersonalLibraryApp
             Pages = PagesTextBox.Text;
             Isbn = IsbnTextBox.Text;
             Bookmark = BookmarkTextBox.Text;
+            Book
+                .SetTitle(Title)
+                .SetAuthor(Author)
+                .SetGenre(Genre)
+                .SetPages(int.Parse(Pages))
+                .SetIsbn(Isbn)
+                .SetStatus(Status);
 
-            if (Status == "Reading")
+            if (Status.ToLower() == "unread")
             {
-                Book
-                    .SetTitle(Title)
-                    .SetAuthor(Author)
-                    .SetGenre(Genre)
-                    .SetPages(int.Parse(Pages))
-                    .SetIsbn(Isbn)
-                    .SetStatus(Status)
-                    .SetBookmark(int.Parse(Bookmark));
+                Book.SetBookmark(0);
+            }
+            else if (Status.ToLower() == "reading")
+            {
+                Book.SetBookmark(int.Parse(Bookmark));
 
             }
-            else
+            else if (Status.ToLower() == "read")
             {
-                Book
-                    .SetTitle(Title)
-                    .SetAuthor(Author)
-                    .SetGenre(Genre)
-                    .SetPages(int.Parse(Pages))
-                    .SetIsbn(Isbn)
-                    .SetStatus(Status);
-                    
+                Book.SetBookmark(int.Parse(Pages));
+
             }
 
 
@@ -144,15 +145,19 @@ namespace PersonalLibraryApp
                 return;
             }
 
-            if (ReadingRadioButton.Checked && (!int.TryParse(BookmarkTextBox.Text, out int b) || int.Parse(BookmarkTextBox.Text) < 0) || int.Parse(BookmarkTextBox.Text) > int.Parse(PagesTextBox.Text))
+            if (ReadingRadioButton.Checked)
             {
-                WarningLabel.Text = "Please insert correct bookmark";
-                return;
+                if (!int.TryParse(BookmarkTextBox.Text, out int bookmark) || bookmark < 0 ||
+                    !int.TryParse(PagesTextBox.Text, out int totalPages) || bookmark > totalPages)
+                {
+                    WarningLabel.Text = "Please insert correct bookmark";
+                    return;
+                }
             }
 
             if (string.IsNullOrEmpty(BookmarkTextBox.Text))
             {
-                BookmarkTextBox.Text = "0";
+                BookmarkTextBox.Text = "";
             }
 
             if (_newBook)
@@ -163,6 +168,7 @@ namespace PersonalLibraryApp
             else 
             {
                 ModifyBook();
+                _mainWindow.backFromEdit = false;
                 _mainWindow.OpenBookDetails(Book);
             }
             

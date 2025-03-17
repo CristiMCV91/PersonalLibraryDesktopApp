@@ -53,7 +53,7 @@ The account section is currently a demo screen. Future iterations will include a
 #### Account Screen
 ![Account Screen](Screenshots/Account.png)
 
-## Application Minimization
+## Application Minimization and Exit
 When closed, the application runs in the background in the system tray. To exit, right-click the system tray icon and select "Exit."
 #### System Tray Screen
 ![System Tray Screen](Screenshots/SystemTray.png)

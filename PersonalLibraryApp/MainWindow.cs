@@ -6,25 +6,24 @@ namespace PersonalLibraryApp
 {
     public partial class MainWindow : Form
     {
-        //private static MainWindow _instance;
-        //private static readonly object _lock = new object();
-
+        // These variables track the status and view states
         private string _status = string.Empty;
         private BookDetails _bookDetails = null;
         private BookEditor _bookEditor = null;
-        private bool backFromEdit = false;
+        public bool backFromEdit = false;
         private bool backFromSearch = false;
         private bool backFromHome = false;
         private Book Book;
         private List<Book> _bookList = null;
         private bool _oneTime_Notification = true;
 
-
+        // Constructor to initialize the form components
         public MainWindow()
         {
             InitializeComponent();
         }
 
+        // On form load, set default configurations
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -32,38 +31,33 @@ namespace PersonalLibraryApp
             homeButton_Click(homeButton, e);
             PopulateBooksUI();
             notifyIcon1.ContextMenuStrip = contextMenu;
-
-
         }
 
+        // Method to populate books in the UI for both home and books panels
         private void PopulateBooksUI()
         {
             homeFlowLayoutPanel.Controls.Clear();
             booksFlowLayoutPanel.Controls.Clear();
 
+            // Add books with specific statuses to the home page
             foreach (Book item in Library.BooksList)
             {
                 if (item.Status.ToLower() == "reading" || item.Status.ToLower() == "unread")
                 {
                     BookCard bookCard = new BookCard(this, item);
-
                     homeFlowLayoutPanel.Controls.Add(bookCard);
                 }
-
-
             }
 
+            // Add books to the "Books" section
             foreach (Book item in Library.ReoderBookList)
             {
-
                 BookRegistration bookRegistration = new BookRegistration(this, item);
-
                 booksFlowLayoutPanel.Controls.Add(bookRegistration);
-
             }
-
         }
 
+        // Method to handle clicking the home button
         internal void homeButton_Click(object sender, EventArgs e)
         {
             PopulateBooksUI();
@@ -78,12 +72,11 @@ namespace PersonalLibraryApp
             backFromSearch = false;
             backFromHome = true;
             CloseBookDetails();
-
         }
 
+        // Method to handle clicking the books button
         internal void bookButton_Click(object sender, EventArgs e)
         {
-
             PopulateBooksUI();
             sectionLabel.Text = "Books";
             homePanel.Visible = false;
@@ -98,6 +91,7 @@ namespace PersonalLibraryApp
             CloseBookDetails();
         }
 
+        // Method to handle clicking the search button
         internal void searchButton_Click(object sender, EventArgs e)
         {
             sectionLabel.Text = "Search";
@@ -112,6 +106,7 @@ namespace PersonalLibraryApp
             CloseBookDetails();
         }
 
+        // Method to handle clicking the user account button
         internal void userbutton_Click(object sender, EventArgs e)
         {
             sectionLabel.Text = "Account";
@@ -125,6 +120,7 @@ namespace PersonalLibraryApp
             CloseBookDetails();
         }
 
+        // Method to handle clicking the new book button
         private void NewBookButton_Click(object sender, EventArgs e)
         {
             sectionLabel.Text = "Add New Book";
@@ -139,11 +135,9 @@ namespace PersonalLibraryApp
             BookEditorFlowLayoutPanel.Controls.Clear();
             _bookEditor = new BookEditor(this);
             BookEditorFlowLayoutPanel.Controls.Add(_bookEditor);
-
-
         }
 
-
+        // Method to handle the back button click in various views
         internal void BackPictureButton_Click(object sender, EventArgs e)
         {
             PopulateBooksUI();
@@ -157,10 +151,11 @@ namespace PersonalLibraryApp
             BookEditorFlowLayoutPanel.Visible = false;
             BackPictureButton.Visible = false;
             CloseBookEditor();
+
             if (backFromEdit)
             {
                 OpenBookDetails(Book);
-                backFromEdit = false;
+                backFromEdit = false;       
             }
             else
             {
@@ -169,10 +164,9 @@ namespace PersonalLibraryApp
                 if (backFromHome) homeButton_Click(sender, e);
             }
 
-
         }
 
-
+        // Method to open the details of a book
         public Book OpenBookDetails(Book book)
         {
             CloseBookEditor();
@@ -189,15 +183,17 @@ namespace PersonalLibraryApp
 
             return book;
         }
+
+        // Method to close the book details view
         public void CloseBookDetails()
         {
             BookDetailsFlowLayoutPanel.Controls.Clear();
             BookDetailsFlowLayoutPanel.Visible = false;
             _bookDetails = null;
             Book = null;
-
         }
 
+        // Method to delete a book
         public void DeleteBook(Book book, EventArgs e)
         {
             CloseBookDetails();
@@ -206,6 +202,7 @@ namespace PersonalLibraryApp
             BackPictureButton_Click(BackPictureButton, e);
         }
 
+        // Method to mark a book with a certain status (e.g., reading, unread)
         public void MarkAs(Book book, string status, EventArgs e)
         {
             book.SetStatus(status);
@@ -214,28 +211,28 @@ namespace PersonalLibraryApp
             PopulateBooksUI();
         }
 
+        // Method to close the book editor view
         public void CloseBookEditor()
         {
             BookEditorFlowLayoutPanel.Controls.Clear();
             BookEditorFlowLayoutPanel.Visible = false;
             _bookEditor = null;
-
         }
 
+        // Method to edit a book
         public void EditBook(Book book)
         {
+            backFromEdit = true;
             CloseBookDetails();
             BookEditorFlowLayoutPanel.Visible = true;
             BookEditorFlowLayoutPanel.Controls.Clear();
             _bookEditor = new BookEditor(this, book);
             BookEditorFlowLayoutPanel.Controls.Add(_bookEditor);
             sectionLabel.Text = "Edit book";
-            backFromEdit = true;
             Book = book;
         }
 
-
-
+        // Method to handle sorting books based on various criteria
         private void SortComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (SortComboBox.SelectedIndex)
@@ -259,20 +256,19 @@ namespace PersonalLibraryApp
             }
         }
 
+        // Method to handle real-time search updates as text changes
         private void SearchTextBox_TextChanged(object sender, EventArgs e)
         {
             Library.SearchBooks(SearchTextBox.Text);
             searchFlowLayoutPanel.Controls.Clear();
             foreach (Book item in Library.SearchBookList)
             {
-
                 BookRegistration bookRegistration = new BookRegistration(this, item);
-
                 searchFlowLayoutPanel.Controls.Add(bookRegistration);
-
             }
         }
 
+        // Method to handle form closing, saving settings and minimizing to system tray
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (this.WindowState == FormWindowState.Normal)
@@ -291,9 +287,9 @@ namespace PersonalLibraryApp
                 notifyIcon1.ShowBalloonTip(3000, "Minimized application", "The application runs in the System Tray.", ToolTipIcon.Info);
                 _oneTime_Notification = false;
             }
-
         }
 
+        // Method to handle the loading of saved window location and settings
         private void MainWindow_Load(object sender, EventArgs e)
         {
             if (Properties.Settings.Default.WindowLocation != Point.Empty)
@@ -303,6 +299,7 @@ namespace PersonalLibraryApp
             notifyIcon1.Visible = true;
         }
 
+        // Method to handle the mouse click event on the system tray icon
         private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
         {
             this.Show();
@@ -310,28 +307,27 @@ namespace PersonalLibraryApp
             notifyIcon1.Visible = false;
         }
 
+        // Method to handle maximizing the application from the system tray
         private void maximizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Show();
             this.WindowState = FormWindowState.Normal;
         }
 
+        // Method to handle closing the application from the system tray menu
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
             Application.ExitThread();
             Environment.Exit(0);
-
         }
 
+        // Method to clear the search results
         private void SearchClearButton_Click(object sender, EventArgs e)
         {
             Library.SearchBooks("");
             SearchTextBox.Text = "";
             searchFlowLayoutPanel.Controls.Clear();
-
-
         }
     }
-
 }
