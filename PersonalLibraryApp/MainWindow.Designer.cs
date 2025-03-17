@@ -409,7 +409,6 @@
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainWindow";
-            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Personal Library";
             FormClosing += MainWindow_FormClosing;
