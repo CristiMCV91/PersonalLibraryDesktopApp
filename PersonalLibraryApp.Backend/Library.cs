@@ -43,14 +43,6 @@ namespace PersonalLibraryApp.Backend
             return book;
         }
 
-        //public static Book PopulateAdditionalData(this Book book, string genre = "", int pages = 0, string isbn = "", string status = "")
-        //{
-        //    return book
-        //        .SetGenre(genre)
-        //        .SetPages(pages)
-        //        .SetIsbn(isbn)
-        //        .SetStatus(status);
-        //}
         public static Book PopulateAdditionalData(this Book book, string genre = "", int pages = 0, string isbn = "", string status = "", int bookmark = 0)
         {
             book
@@ -110,7 +102,7 @@ namespace PersonalLibraryApp.Backend
             query = query.ToLower();
             if (string.IsNullOrWhiteSpace(query))
             {
-                SearchBookList = []; // Returnează o listă goală dacă inputul este invalid.
+                SearchBookList = [];
             }
             else 
             {

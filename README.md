@@ -4,7 +4,8 @@
 Personal Library Desktop App is a Windows Forms desktop application of the <a href="https://github.com/CristiMCV91/PersonalLibrary" target="_blank"> "Personal Library Console App"</a>, designed to help users manage their book collections efficiently. Users can add, edit, delete, and search for books within the application. The app features an intuitive user interface with dedicated sections for home, book management, searching, and future account management. The prevoius application 
 
 - <a href="https://github.com/CristiMCV91/PersonalLibraryDesktopApp/blob/main/Documentation/ApplicationDiagram.pdf" target="_blank">Application Diagram [PDF]</a>  
-- <a href="https://github.com/CristiMCV91/PersonalLibraryDesktopApp/blob/main/Documentation/ApplicationWireframeDesign.pdf" target="_blank">Project Wireframes [PDF]</a>  
+- <a href="https://github.com/CristiMCV91/PersonalLibraryDesktopApp/blob/main/Documentation/ApplicationWireframeDesign.pdf" target="_blank">Project UI Wireframes [PDF]</a>  
+- <a href="https://github.com/CristiMCV91/PersonalLibraryDesktopApp/blob/main/Documentation/Project Documentation%20-%20Personal%20Library%20App%20(Cristian%20Macovei).pdf" target="_blank">Project Complete Documentation [PDF]</a>  
 
 
 
