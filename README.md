@@ -101,7 +101,8 @@ This project is licensed under the MIT License.
 - **Version**: 1.0
 - **Release Date**: 19.03.2025
 - **Author / Student**: Cristian Macovei
-- **Teacher**: Mihai Gonciar
-- **Course**: C#
-- **Academy**: IT School [IT School](https://itschool.ro)
+- **Course**: C# (Duration: 30.09.2024 - 19.03.2025)
+- **Many thanks to:**
+   - **My teacher**: [Mihai Gonciar](https://github.com/mihaigonciar)
+   - **Academy**: [IT School](https://itschool.ro)
 
