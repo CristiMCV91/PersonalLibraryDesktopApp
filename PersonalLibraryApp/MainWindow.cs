@@ -200,6 +200,8 @@ namespace PersonalLibraryApp
             PopulateBooksUI();
             Library.DeleteBook(book);
             BackPictureButton_Click(BackPictureButton, e);
+            SearchClearButton_Click(BackPictureButton, e);
+
         }
 
         // Method to mark a book with a certain status (e.g., reading, unread)

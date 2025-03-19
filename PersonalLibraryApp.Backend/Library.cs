@@ -74,6 +74,7 @@ namespace PersonalLibraryApp.Backend
         public static void DeleteBook(Book book)
         { 
             _booksInternal.Remove(book);
+            ReoderBookList.Remove(book);
         }
 
         public static void SortBy(string criteria)
